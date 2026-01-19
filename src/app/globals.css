@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS Custom Properties for var() usage in components */
+:root {
+  --color-primary: #3D2B1F;
+  --color-primary-light: #5A4233;
+  --color-secondary: #D4B896;
+  --color-secondary-light: #E8D5BC;
+  --color-accent: #C9A86C;
+  --color-accent-hover: #B8954A;
+  --color-neutral: #8B7355;
+  --color-neutral-light: #A89580;
+  --color-light: #F5F0EB;
+  --color-lighter: #FAF8F5;
+  --color-white: #FFFFFF;
+  --color-text: #2D2016;
+  --color-text-light: #5C4D3D;
+  --background: #FFFFFF;
+  --foreground: #2D2016;
+  --muted: #F5F0EB;
+  --muted-foreground: #5C4D3D;
+  --border: #E8D5BC;
+  --ring: #C9A86C;
+  --card: #FFFFFF;
+  --card-foreground: #2D2016;
+  --destructive: #DC2626;
+  --destructive-foreground: #FFFFFF;
+  --success: #16A34A;
+  --success-foreground: #FFFFFF;
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    line-height: 1.6;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F5F0EB;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8B7355;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3D2B1F;
+}
+
+/* Focus styles for accessibility */
+:focus-visible {
+  outline: 2px solid #C9A86C;
+  outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+  background: #D4B896;
+  color: #3D2B1F;
+}
