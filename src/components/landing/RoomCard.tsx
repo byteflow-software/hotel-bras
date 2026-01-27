@@ -3,18 +3,13 @@ import Link from "next/link";
 import { Users, Maximize, Bed } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Room } from "@/types";
-import { formatCurrency } from "@/lib/utils";
-import { getMinPrice } from "@/lib/mock";
 
 interface RoomCardProps {
   room: Room;
 }
 
 export function RoomCard({ room }: RoomCardProps) {
-  const minPrice = getMinPrice(room.id);
-
   return (
     <Card className="overflow-hidden group">
       {/* Image */}
@@ -26,9 +21,6 @@ export function RoomCard({ room }: RoomCardProps) {
           className="object-cover transition-transform duration-500 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-        <Badge className="absolute top-4 left-4" variant="secondary">
-          A partir de {formatCurrency(minPrice)}
-        </Badge>
       </div>
 
       <CardContent className="p-6">
@@ -72,14 +64,9 @@ export function RoomCard({ room }: RoomCardProps) {
           )}
         </div>
 
-        <div className="flex gap-3">
-          <Button asChild variant="outline" className="flex-1">
-            <Link href={`/acomodacoes#${room.id}`}>Ver detalhes</Link>
-          </Button>
-          <Button asChild className="flex-1">
-            <Link href={`/reservas?room=${room.id}`}>Reservar</Link>
-          </Button>
-        </div>
+        <Button asChild variant="outline" className="w-full">
+          <Link href={`/acomodacoes#${room.id}`}>Ver detalhes</Link>
+        </Button>
       </CardContent>
     </Card>
   );

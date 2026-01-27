@@ -6,24 +6,13 @@ import { AdminLayout } from "@/components/admin";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { customers, bookings } from "@/lib/mock";
+import { customers } from "@/lib/mock";
 import { formatDate } from "@/lib/utils";
 
 export default function AdminClientesPage() {
   const [search, setSearch] = useState("");
 
-  const customersWithBookings = customers.map((customer) => {
-    const customerBookings = bookings.filter(
-      (b) => b.customerId === customer.id
-    );
-    return {
-      ...customer,
-      totalBookings: customerBookings.length,
-      lastBooking: customerBookings[0]?.createdAt,
-    };
-  });
-
-  const filteredCustomers = customersWithBookings.filter(
+  const filteredCustomers = customers.filter(
     (customer) =>
       customer.name.toLowerCase().includes(search.toLowerCase()) ||
       customer.email.toLowerCase().includes(search.toLowerCase()) ||
@@ -31,12 +20,11 @@ export default function AdminClientesPage() {
   );
 
   const exportCSV = () => {
-    const headers = ["Nome", "Email", "Telefone", "Reservas", "Cadastro"];
+    const headers = ["Nome", "Email", "Telefone", "Cadastro"];
     const rows = filteredCustomers.map((c) => [
       c.name,
       c.email,
       c.phone,
-      c.totalBookings,
       formatDate(c.createdAt),
     ]);
 
@@ -58,7 +46,7 @@ export default function AdminClientesPage() {
               Clientes
             </h1>
             <p className="text-[var(--color-text-light)]">
-              Base de clientes do canal direto
+              Base de clientes do hotel
             </p>
           </div>
           <Button onClick={exportCSV} variant="outline">
@@ -96,9 +84,6 @@ export default function AdminClientesPage() {
                       Contato
                     </th>
                     <th className="px-4 py-3 text-left text-sm font-semibold text-[var(--color-primary)]">
-                      Reservas
-                    </th>
-                    <th className="px-4 py-3 text-left text-sm font-semibold text-[var(--color-primary)]">
                       Cadastro
                     </th>
                     <th className="px-4 py-3 text-right text-sm font-semibold text-[var(--color-primary)]">
@@ -131,15 +116,6 @@ export default function AdminClientesPage() {
                           <Phone className="w-4 h-4" />
                           {customer.phone}
                         </div>
-                      </td>
-                      <td className="px-4 py-4">
-                        <span className="font-semibold">
-                          {customer.totalBookings}
-                        </span>
-                        <span className="text-[var(--color-text-light)]">
-                          {" "}
-                          reserva(s)
-                        </span>
                       </td>
                       <td className="px-4 py-4 text-sm text-[var(--color-text-light)]">
                         {formatDate(customer.createdAt)}

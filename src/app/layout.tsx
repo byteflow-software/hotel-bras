@@ -10,7 +10,6 @@ export const metadata: Metadata = {
     "hospedagem",
     "sao paulo",
     "bras",
-    "reservas",
     "quartos",
     "acomodacoes",
   ],

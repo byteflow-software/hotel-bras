@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Phone, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { hotelInfo } from "@/lib/mock";
@@ -14,17 +13,14 @@ export function CTASection() {
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <h2 className="font-serif text-3xl md:text-4xl font-bold text-white mb-6">
-          Reserve sua Estadia Agora
+          Entre em Contato Conosco
         </h2>
         <p className="text-white/80 text-lg mb-10 max-w-2xl mx-auto">
-          Garanta o melhor preco reservando diretamente conosco. Cancelamento
-          gratuito ate 48 horas antes do check-in.
+          Fale diretamente com nossa equipe para consultar disponibilidade,
+          tarifas e fazer sua reserva.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button asChild size="xl" variant="secondary">
-            <Link href="/reservas">Reservar Online</Link>
-          </Button>
           <Button
             asChild
             size="xl"
@@ -54,7 +50,7 @@ export function CTASection() {
         </div>
 
         <p className="mt-8 text-white/60 text-sm">
-          Atendimento 24 horas | Pagamento seguro | Confirmacao instantanea
+          Atendimento 24 horas | Localizacao privilegiada | Conforto garantido
         </p>
       </div>
     </section>

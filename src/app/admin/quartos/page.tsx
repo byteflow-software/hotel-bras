@@ -1,15 +1,11 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import { Edit, Plus, Users, Maximize } from "lucide-react";
 import { AdminLayout } from "@/components/admin";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { rooms } from "@/lib/mock";
-import { formatCurrency } from "@/lib/utils";
-import { getMinPrice } from "@/lib/mock";
 
 export default function AdminQuartosPage() {
   return (
@@ -40,9 +36,6 @@ export default function AdminQuartosPage() {
                   fill
                   className="object-cover"
                 />
-                <Badge className="absolute top-3 right-3">
-                  {formatCurrency(getMinPrice(room.id))}/noite
-                </Badge>
               </div>
               <CardContent className="p-4">
                 <h3 className="font-serif text-lg font-semibold text-[var(--color-primary)] mb-2">

@@ -6,10 +6,8 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
-  Calendar,
   Bed,
   Users,
-  Tag,
   Settings,
   LogOut,
   Menu,
@@ -19,10 +17,8 @@ import { cn } from "@/lib/utils";
 
 const menuItems = [
   { href: "/admin", icon: LayoutDashboard, label: "Dashboard" },
-  { href: "/admin/reservas", icon: Calendar, label: "Reservas" },
   { href: "/admin/quartos", icon: Bed, label: "Quartos" },
   { href: "/admin/clientes", icon: Users, label: "Clientes" },
-  { href: "/admin/cupons", icon: Tag, label: "Cupons" },
   { href: "/admin/configuracoes", icon: Settings, label: "Configuracoes" },
 ];
 

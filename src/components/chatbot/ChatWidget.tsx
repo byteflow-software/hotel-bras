@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import {
   MessageCircle,
   X,
@@ -10,10 +9,8 @@ import {
   MapPin,
   Users,
   Phone,
-  Calendar,
   ArrowRight,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { hotelInfo } from "@/lib/mock";
 
@@ -61,35 +58,25 @@ const responses: Record<string, Message> = {
     content: `Nossos horarios:\n\n- Check-in: a partir das ${hotelInfo.checkInTime}\n- Check-out: ate as ${hotelInfo.checkOutTime}\n- Cafe da manha: 06:30 as 10:00\n- Recepcao: 24 horas\n\nPosso ajudar com mais alguma coisa?`,
     options: [
       {
-        label: "Reservar agora",
-        value: "reservar",
-        icon: <Calendar className="w-4 h-4" />,
-      },
-      { label: "Outras duvidas", value: "menu", icon: <ArrowRight className="w-4 h-4" /> },
-      {
         label: "Falar com atendente",
         value: "atendente",
         icon: <Phone className="w-4 h-4" />,
       },
+      { label: "Outras duvidas", value: "menu", icon: <ArrowRight className="w-4 h-4" /> },
     ],
   },
   pagamentos: {
     id: "pagamentos",
     type: "bot",
     content:
-      "Aceitamos as seguintes formas de pagamento:\n\n- Pix (pagamento instantaneo)\n- Cartao de credito (Visa, Mastercard, Elo)\n- Cartao de debito\n\nO pagamento e realizado no momento da reserva online ou no check-in para reservas presenciais.",
+      "Aceitamos as seguintes formas de pagamento:\n\n- Pix (pagamento instantaneo)\n- Cartao de credito (Visa, Mastercard, Elo)\n- Cartao de debito\n\nPara realizar sua reserva, entre em contato com nossa equipe pelo WhatsApp ou telefone.",
     options: [
-      {
-        label: "Reservar agora",
-        value: "reservar",
-        icon: <Calendar className="w-4 h-4" />,
-      },
-      { label: "Outras duvidas", value: "menu", icon: <ArrowRight className="w-4 h-4" /> },
       {
         label: "Falar com atendente",
         value: "atendente",
         icon: <Phone className="w-4 h-4" />,
       },
+      { label: "Outras duvidas", value: "menu", icon: <ArrowRight className="w-4 h-4" /> },
     ],
   },
   localizacao: {
@@ -101,11 +88,6 @@ const responses: Record<string, Message> = {
         label: "Ver no mapa",
         value: "mapa",
         icon: <MapPin className="w-4 h-4" />,
-      },
-      {
-        label: "Reservar agora",
-        value: "reservar",
-        icon: <Calendar className="w-4 h-4" />,
       },
       {
         label: "Falar com atendente",
@@ -124,11 +106,6 @@ const responses: Record<string, Message> = {
         label: "Ver politicas completas",
         value: "politicas_link",
         icon: <ArrowRight className="w-4 h-4" />,
-      },
-      {
-        label: "Reservar agora",
-        value: "reservar",
-        icon: <Calendar className="w-4 h-4" />,
       },
       {
         label: "Falar com atendente",
@@ -181,10 +158,6 @@ export function ChatWidget() {
 
   const handleOptionClick = (value: string) => {
     // Handle special actions
-    if (value === "reservar") {
-      window.location.href = "/reservas";
-      return;
-    }
     if (value === "mapa") {
       window.location.href = "/localizacao";
       return;
@@ -295,12 +268,15 @@ export function ChatWidget() {
 
         {/* Footer */}
         <div className="p-3 border-t border-[var(--border)] bg-[var(--color-lighter)]">
-          <Button asChild className="w-full">
-            <Link href="/reservas">
-              <Calendar className="w-4 h-4 mr-2" />
-              Reservar Agora
-            </Link>
-          </Button>
+          <a
+            href={`https://wa.me/55${hotelInfo.whatsapp.replace(/\D/g, "")}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-2 w-full py-2 px-4 bg-[var(--color-accent)] text-white rounded-lg hover:bg-[var(--color-accent-hover)] transition-colors text-sm font-medium"
+          >
+            <MessageCircle className="w-4 h-4" />
+            Falar pelo WhatsApp
+          </a>
         </div>
       </div>
     </>

@@ -1,4 +1,4 @@
-import { HotelInfo, Service } from "@/types";
+import { HotelInfo, Service, Customer } from "@/types";
 
 export const hotelInfo: HotelInfo = {
   name: "Hotel Bras",
@@ -68,6 +68,41 @@ export const services: Service[] = [
     name: "Room Service",
     description: "Servico de quarto disponivel",
     icon: "UtensilsCrossed",
+  },
+];
+
+export const customers: Customer[] = [
+  {
+    id: "cust-1",
+    name: "Carlos Silva",
+    email: "carlos.silva@email.com",
+    phone: "(11) 98765-4321",
+    document: "123.456.789-00",
+    createdAt: new Date("2024-01-15"),
+  },
+  {
+    id: "cust-2",
+    name: "Maria Santos",
+    email: "maria.santos@email.com",
+    phone: "(11) 91234-5678",
+    document: "987.654.321-00",
+    createdAt: new Date("2024-02-20"),
+  },
+  {
+    id: "cust-3",
+    name: "Joao Oliveira",
+    email: "joao.oliveira@email.com",
+    phone: "(21) 99876-5432",
+    document: "456.789.123-00",
+    createdAt: new Date("2024-03-10"),
+  },
+  {
+    id: "cust-4",
+    name: "Ana Costa",
+    email: "ana.costa@email.com",
+    phone: "(11) 97654-3210",
+    document: "321.654.987-00",
+    createdAt: new Date("2024-04-05"),
   },
 ];
 

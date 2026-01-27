@@ -1,7 +1,7 @@
 import {
   Header,
   Footer,
-  HeroSearch,
+  Hero,
   FeaturedRooms,
   ServiceGrid,
   LocationSection,
@@ -13,7 +13,7 @@ export default function HomePage() {
   return (
     <main className="min-h-screen">
       <Header />
-      <HeroSearch />
+      <Hero />
       <FeaturedRooms />
       <ServiceGrid />
       <LocationSection />

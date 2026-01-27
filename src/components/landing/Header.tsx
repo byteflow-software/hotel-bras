@@ -59,7 +59,7 @@ export function Header() {
               <span className="text-sm">(11) 3333-4444</span>
             </a>
             <Button asChild size="lg">
-              <Link href="/reservas">Reservar Agora</Link>
+              <Link href="/contato">Fale Conosco</Link>
             </Button>
           </div>
 
@@ -104,7 +104,7 @@ export function Header() {
                 <span>(11) 3333-4444</span>
               </a>
               <Button asChild size="lg" className="w-full">
-                <Link href="/reservas">Reservar Agora</Link>
+                <Link href="/contato">Fale Conosco</Link>
               </Button>
             </div>
           </nav>

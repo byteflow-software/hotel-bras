@@ -1,6 +1,6 @@
 export { Header } from "./Header";
 export { Footer } from "./Footer";
-export { HeroSearch } from "./HeroSearch";
+export { Hero } from "./HeroSearch";
 export { RoomCard } from "./RoomCard";
 export { FeaturedRooms } from "./FeaturedRooms";
 export { ServiceGrid } from "./ServiceGrid";

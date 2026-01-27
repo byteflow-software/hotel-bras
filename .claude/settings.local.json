@@ -13,7 +13,9 @@
       "Bash(taskkill:*)",
       "Bash(taskkill /F /PID 20292)",
       "Bash(timeout /t 2)",
-      "Bash(npm uninstall:*)"
+      "Bash(npm uninstall:*)",
+      "Bash(rm:*)",
+      "Bash(npx next build)"
     ]
   }
 }

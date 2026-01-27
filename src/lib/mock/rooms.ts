@@ -1,4 +1,4 @@
-import { Room, RatePlan } from "@/types";
+import { Room } from "@/types";
 
 export const rooms: Room[] = [
   {
@@ -16,7 +16,6 @@ export const rooms: Room[] = [
     beds: "1 cama de solteiro",
     size: 18,
     amenities: ["Wi-Fi", "TV", "Ar-condicionado", "Frigobar", "Cofre", "Secador de cabelo"],
-    bitzRoomTypeId: "BITZ-STD-SGL",
   },
   {
     id: "standard-double",
@@ -33,7 +32,6 @@ export const rooms: Room[] = [
     beds: "1 cama de casal",
     size: 22,
     amenities: ["Wi-Fi", "TV", "Ar-condicionado", "Frigobar", "Cofre", "Secador de cabelo"],
-    bitzRoomTypeId: "BITZ-STD-DBL",
   },
   {
     id: "superior-double",
@@ -59,7 +57,6 @@ export const rooms: Room[] = [
       "Roupao",
       "Banheira",
     ],
-    bitzRoomTypeId: "BITZ-SUP-DBL",
   },
   {
     id: "luxo-double",
@@ -87,7 +84,6 @@ export const rooms: Room[] = [
       "Varanda",
       "Maquina de cafe",
     ],
-    bitzRoomTypeId: "BITZ-LUX-DBL",
   },
   {
     id: "suite-master",
@@ -118,7 +114,6 @@ export const rooms: Room[] = [
       "Som Bluetooth",
       "Closet",
     ],
-    bitzRoomTypeId: "BITZ-STE-MST",
   },
   {
     id: "suite-presidencial",
@@ -149,80 +144,5 @@ export const rooms: Room[] = [
       "Translado aeroporto incluso",
       "Check-in/out no quarto",
     ],
-    bitzRoomTypeId: "BITZ-STE-PRE",
   },
 ];
-
-export const ratePlans: RatePlan[] = [
-  {
-    id: "standard",
-    name: "Tarifa Padrao",
-    description: "Nossa melhor tarifa disponivel com cancelamento flexivel.",
-    pricePerNight: 0, // sera calculado por quarto
-    policies: ["Cancelamento gratuito ate 48h antes", "Pagamento na reserva"],
-    cancellationPolicy: "Cancelamento gratuito ate 48 horas antes do check-in",
-    breakfast: false,
-  },
-  {
-    id: "breakfast",
-    name: "Tarifa com Cafe da Manha",
-    description: "Inclui cafe da manha completo para todos os hospedes.",
-    pricePerNight: 0, // sera calculado por quarto + adicional
-    policies: [
-      "Cafe da manha incluso",
-      "Cancelamento gratuito ate 48h antes",
-      "Pagamento na reserva",
-    ],
-    cancellationPolicy: "Cancelamento gratuito ate 48 horas antes do check-in",
-    breakfast: true,
-  },
-  {
-    id: "non-refundable",
-    name: "Tarifa Promocional",
-    description: "Melhor preco! Tarifa nao reembolsavel com desconto especial.",
-    pricePerNight: 0, // sera calculado por quarto com desconto
-    policies: ["Nao reembolsavel", "Pagamento integral na reserva", "Melhor preco garantido"],
-    cancellationPolicy: "Esta tarifa nao permite cancelamento ou alteracao",
-    breakfast: false,
-  },
-];
-
-// Precos base por quarto (por noite)
-export const roomPrices: Record<string, number> = {
-  "standard-single": 180,
-  "standard-double": 220,
-  "superior-double": 280,
-  "luxo-double": 350,
-  "suite-master": 450,
-  "suite-presidencial": 650,
-};
-
-// Adicional do cafe da manha por pessoa
-export const breakfastPrice = 45;
-
-// Desconto da tarifa nao reembolsavel
-export const nonRefundableDiscount = 0.15; // 15%
-
-export function getRoomWithRates(roomId: string, nights: number = 1): Room & { rates: RatePlan[] } {
-  const room = rooms.find((r) => r.id === roomId);
-  if (!room) throw new Error("Room not found");
-
-  const basePrice = roomPrices[roomId];
-
-  const rates = ratePlans.map((rate) => {
-    let pricePerNight = basePrice;
-
-    if (rate.id === "breakfast") {
-      pricePerNight += breakfastPrice * room.maxOccupancy;
-    } else if (rate.id === "non-refundable") {
-      pricePerNight = basePrice * (1 - nonRefundableDiscount);
-    }
-
-    return {
-      ...rate,
-      pricePerNight,
-    };
-  });
-
-  return { ...room, rates };
-}

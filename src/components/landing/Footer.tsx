@@ -76,18 +76,10 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/reservas"
+                  href="/contato"
                   className="text-white/80 hover:text-[var(--color-secondary)] transition-colors"
                 >
-                  Reservas
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/minhas-reservas"
-                  className="text-white/80 hover:text-[var(--color-secondary)] transition-colors"
-                >
-                  Minhas Reservas
+                  Contato
                 </Link>
               </li>
             </ul>

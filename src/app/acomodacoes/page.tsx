@@ -1,12 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
 import { Users, Maximize, Bed, Check } from "lucide-react";
 import { Header, Footer } from "@/components/landing";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { rooms } from "@/lib/mock";
-import { formatCurrency } from "@/lib/utils";
-import { getMinPrice } from "@/lib/mock";
 
 export const metadata = {
   title: "Acomodacoes | Hotel Bras",
@@ -52,9 +47,6 @@ export default function AcomodacoesPage() {
                       fill
                       className="object-cover"
                     />
-                    <Badge className="absolute top-4 left-4 text-base px-4 py-2">
-                      A partir de {formatCurrency(getMinPrice(room.id))}/noite
-                    </Badge>
                   </div>
                   <div className="grid grid-cols-2 gap-4 mt-4">
                     {room.photos.slice(1, 3).map((photo, i) => (
@@ -113,12 +105,6 @@ export default function AcomodacoesPage() {
                       </div>
                     ))}
                   </div>
-
-                  <Button asChild size="lg">
-                    <Link href={`/reservas?room=${room.id}`}>
-                      Reservar este quarto
-                    </Link>
-                  </Button>
                 </div>
               </div>
             ))}

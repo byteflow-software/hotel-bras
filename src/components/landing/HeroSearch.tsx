@@ -1,38 +1,8 @@
-"use client";
-
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { format, addDays } from "date-fns";
-import { ptBR } from "date-fns/locale";
-import { Calendar, Users, Search } from "lucide-react";
+import { Phone, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { hotelInfo } from "@/lib/mock";
 
-export function HeroSearch() {
-  const router = useRouter();
-  const [checkIn, setCheckIn] = useState(format(addDays(new Date(), 1), "yyyy-MM-dd"));
-  const [checkOut, setCheckOut] = useState(format(addDays(new Date(), 3), "yyyy-MM-dd"));
-  const [adults, setAdults] = useState("2");
-  const [children, setChildren] = useState("0");
-
-  const handleSearch = () => {
-    const params = new URLSearchParams({
-      checkIn,
-      checkOut,
-      adults,
-      children,
-    });
-    router.push(`/reservas?${params.toString()}`);
-  };
-
+export function Hero() {
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center">
       {/* Background Image */}
@@ -57,102 +27,47 @@ export function HeroSearch() {
           Sua estadia perfeita comeca aqui.
         </p>
 
-        {/* Search Box */}
-        <div className="bg-white rounded-2xl shadow-2xl p-6 md:p-8 max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 items-end">
-            {/* Check-in */}
-            <div className="space-y-2">
-              <Label htmlFor="checkIn" className="flex items-center gap-2">
-                <Calendar className="w-4 h-4 text-[var(--color-accent)]" />
-                Check-in
-              </Label>
-              <Input
-                id="checkIn"
-                type="date"
-                value={checkIn}
-                onChange={(e) => setCheckIn(e.target.value)}
-                min={format(new Date(), "yyyy-MM-dd")}
-                className="w-full"
-              />
-            </div>
-
-            {/* Check-out */}
-            <div className="space-y-2">
-              <Label htmlFor="checkOut" className="flex items-center gap-2">
-                <Calendar className="w-4 h-4 text-[var(--color-accent)]" />
-                Check-out
-              </Label>
-              <Input
-                id="checkOut"
-                type="date"
-                value={checkOut}
-                onChange={(e) => setCheckOut(e.target.value)}
-                min={checkIn}
-                className="w-full"
-              />
-            </div>
-
-            {/* Adults */}
-            <div className="space-y-2">
-              <Label htmlFor="adults" className="flex items-center gap-2">
-                <Users className="w-4 h-4 text-[var(--color-accent)]" />
-                Adultos
-              </Label>
-              <Select value={adults} onValueChange={setAdults}>
-                <SelectTrigger id="adults">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  {[1, 2, 3, 4].map((num) => (
-                    <SelectItem key={num} value={num.toString()}>
-                      {num} {num === 1 ? "adulto" : "adultos"}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-
-            {/* Children */}
-            <div className="space-y-2">
-              <Label htmlFor="children" className="flex items-center gap-2">
-                <Users className="w-4 h-4 text-[var(--color-accent)]" />
-                Criancas
-              </Label>
-              <Select value={children} onValueChange={setChildren}>
-                <SelectTrigger id="children">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  {[0, 1, 2, 3].map((num) => (
-                    <SelectItem key={num} value={num.toString()}>
-                      {num} {num === 1 ? "crianca" : "criancas"}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-
-            {/* Search Button */}
-            <Button size="xl" onClick={handleSearch} className="w-full">
-              <Search className="w-5 h-5 mr-2" />
-              Buscar
-            </Button>
-          </div>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button
+            asChild
+            size="xl"
+            className="bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-white"
+          >
+            <a
+              href={`https://wa.me/55${hotelInfo.whatsapp.replace(/\D/g, "")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <MessageCircle className="w-5 h-5 mr-2" />
+              Fale Conosco pelo WhatsApp
+            </a>
+          </Button>
+          <Button
+            asChild
+            size="xl"
+            variant="outline"
+            className="border-white text-white hover:bg-white hover:text-[var(--color-primary)]"
+          >
+            <a href={`tel:+55${hotelInfo.phone.replace(/\D/g, "")}`}>
+              <Phone className="w-5 h-5 mr-2" />
+              Ligar
+            </a>
+          </Button>
         </div>
 
         {/* Quick Info */}
         <div className="mt-12 flex flex-wrap justify-center gap-8 text-white/80">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-[var(--color-accent)]" />
-            Melhor preco garantido
+            Localizacao privilegiada
           </div>
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-[var(--color-accent)]" />
-            Cancelamento gratuito
+            Atendimento 24 horas
           </div>
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-[var(--color-accent)]" />
-            Pagamento seguro
+            Conforto e qualidade
           </div>
         </div>
       </div>
