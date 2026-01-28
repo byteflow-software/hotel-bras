@@ -12,15 +12,15 @@ export function CTASection() {
       </div>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-        <h2 className="font-serif text-3xl md:text-4xl font-bold text-white mb-6">
+        <h2 className="font-serif text-3xl md:text-4xl font-bold text-white mb-6 animate-fade-in">
           Entre em Contato Conosco
         </h2>
-        <p className="text-white/80 text-lg mb-10 max-w-2xl mx-auto">
+        <p className="text-white/80 text-lg mb-10 max-w-2xl mx-auto animate-fade-in-delay">
           Fale diretamente com nossa equipe para consultar disponibilidade,
           tarifas e fazer sua reserva.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-delay-2">
           <Button
             asChild
             size="xl"

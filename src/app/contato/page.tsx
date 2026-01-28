@@ -1,12 +1,14 @@
 "use client";
 
-import { useState } from "react";
-import { Phone, Mail, MapPin, MessageCircle, Send, Clock } from "lucide-react";
-import { Header, Footer } from "@/components/landing";
+import { useState, useTransition } from "react";
+import { Phone, Mail, MapPin, MessageCircle, Send, Clock, Loader2 } from "lucide-react";
+import { Header } from "@/components/landing/Header";
+import { Footer } from "@/components/landing/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { hotelInfo } from "@/lib/mock";
+import { hotelInfo, unitAddresses } from "@/lib/mock";
+import { createContact } from "@/app/admin/contatos/actions";
 
 export default function ContatoPage() {
   const [formData, setFormData] = useState({
@@ -17,11 +19,21 @@ export default function ContatoPage() {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [isPending, startTransition] = useTransition();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Mock submission
-    setSubmitted(true);
+    startTransition(async () => {
+      await createContact({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone || undefined,
+        subject: formData.subject,
+        message: formData.message,
+      });
+      setSubmitted(true);
+      setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+    });
   };
 
   return (
@@ -99,13 +111,29 @@ export default function ContatoPage() {
                       <MapPin className="w-5 h-5" />
                     </div>
                     <div>
-                      <p className="font-medium">Endereco</p>
+                      <p className="font-medium">{unitAddresses.autonoma.name}</p>
                       <p className="text-white/80">
-                        {hotelInfo.address}
+                        {unitAddresses.autonoma.address}
                         <br />
-                        {hotelInfo.city} - {hotelInfo.state}
+                        {unitAddresses.autonoma.city} - {unitAddresses.autonoma.state}
                         <br />
-                        CEP: {hotelInfo.zipCode}
+                        CEP: {unitAddresses.autonoma.zipCode}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="p-2 bg-white/10 rounded-lg">
+                      <MapPin className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <p className="font-medium">{unitAddresses.flat.name}</p>
+                      <p className="text-white/80">
+                        {unitAddresses.flat.address}
+                        <br />
+                        {unitAddresses.flat.city} - {unitAddresses.flat.state}
+                        <br />
+                        CEP: {unitAddresses.flat.zipCode}
                       </p>
                     </div>
                   </div>
@@ -211,9 +239,18 @@ export default function ContatoPage() {
                     />
                   </div>
 
-                  <Button type="submit" size="lg" className="w-full md:w-auto">
-                    <Send className="w-4 h-4 mr-2" />
-                    Enviar Mensagem
+                  <Button type="submit" size="lg" className="w-full md:w-auto" disabled={isPending}>
+                    {isPending ? (
+                      <>
+                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                        Enviando...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-4 h-4 mr-2" />
+                        Enviar Mensagem
+                      </>
+                    )}
                   </Button>
                 </form>
               )}

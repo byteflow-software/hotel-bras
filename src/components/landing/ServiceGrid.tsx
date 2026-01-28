@@ -25,7 +25,7 @@ export function ServiceGrid() {
   return (
     <section className="py-20 bg-[var(--color-light)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-[var(--color-primary)] mb-4">
             Nossos Servicos
           </h2>
@@ -35,11 +35,11 @@ export function ServiceGrid() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 animate-stagger">
           {services.map((service) => (
             <div
               key={service.id}
-              className="bg-white rounded-xl p-6 text-center shadow-sm hover:shadow-md transition-shadow duration-300"
+              className="bg-white rounded-xl p-6 text-center shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 animate-fade-in-up opacity-0"
             >
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[var(--color-secondary-light)] text-[var(--color-primary)] mb-4">
                 {iconMap[service.icon]}

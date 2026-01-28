@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
   Bed,
-  Users,
+  MessageSquare,
   Settings,
   LogOut,
   Menu,
@@ -18,8 +18,8 @@ import { cn } from "@/lib/utils";
 const menuItems = [
   { href: "/admin", icon: LayoutDashboard, label: "Dashboard" },
   { href: "/admin/quartos", icon: Bed, label: "Quartos" },
-  { href: "/admin/clientes", icon: Users, label: "Clientes" },
-  { href: "/admin/configuracoes", icon: Settings, label: "Configuracoes" },
+  { href: "/admin/contatos", icon: MessageSquare, label: "Contatos" },
+  { href: "/admin/configuracoes", icon: Settings, label: "Configurações" },
 ];
 
 interface AdminSidebarProps {

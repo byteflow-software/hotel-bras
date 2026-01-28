@@ -1,48 +1,62 @@
 import { MapPin, Train, Bus, Car, Plane } from "lucide-react";
 import { Header, Footer } from "@/components/landing";
-import { hotelInfo } from "@/lib/mock";
+import { hotelInfo, unitAddresses } from "@/lib/mock";
 
 export const metadata = {
-  title: "Localizacao | Hotel Bras",
-  description: "Saiba como chegar ao Hotel Bras no coracao de Sao Paulo.",
+  title: "Localização | Hotel Brás",
+  description: "Saiba como chegar ao Hotel Brás no bairro do Canindé, São Paulo.",
 };
+
+const units = [
+  {
+    ...unitAddresses.autonoma,
+    lat: -23.52468,
+    lng: -46.61913,
+  },
+  {
+    ...unitAddresses.flat,
+    lat: -23.52490,
+    lng: -46.61950,
+  },
+];
 
 const directions = [
   {
     icon: Train,
-    title: "De Metro",
+    title: "De Metrô",
     description:
-      "Desembarque na estacao Bras (Linha 3 - Vermelha). O hotel fica a apenas 300 metros da estacao, cerca de 4 minutos a pe.",
+      "Estação Armênia (Linha 1 - Azul), a cerca de 12 minutos a pé. Também é possível descer na estação Portuguesa-Tietê (Linha 1 - Azul), a cerca de 15 minutos a pé.",
   },
   {
     icon: Bus,
-    title: "De Onibus",
+    title: "De Ônibus",
     description:
-      "Diversas linhas de onibus passam pela regiao. O ponto mais proximo fica na Av. Rangel Pestana, a 200 metros do hotel.",
+      "Diversas linhas de ônibus passam pela Rua Canindé e pela Av. Cruzeiro do Sul. Linhas vindas do Terminal Tietê e do centro atendem a região.",
   },
   {
     icon: Car,
     title: "De Carro",
     description:
-      "Pela Marginal Tiete, saia na Ponte da Casa Verde e siga pela Av. Cruzeiro do Sul. Ou pelo centro, siga pela Av. do Estado. Estacionamento privativo disponivel.",
+      "Pela Marginal Tietê, acesse a Av. Cruzeiro do Sul e siga até a Rua Canindé. Pelo centro, siga pela Av. do Estado até a Rua Pedro Vicente e vire na Rua Canindé.",
   },
   {
     icon: Plane,
     title: "Do Aeroporto",
     description:
-      "De Guarulhos (GRU): 30 km, cerca de 40 min via Marginal Tiete. De Congonhas (CGH): 12 km, cerca de 25 min via Av. do Estado.",
+      "De Guarulhos (GRU): cerca de 25 km, 35 min via Marginal Tietê. De Congonhas (CGH): cerca de 12 km, 25 min via Av. do Estado.",
   },
 ];
 
 const nearby = [
-  { name: "Metro Bras", distance: "300m", type: "Transporte" },
-  { name: "Mercado Municipal", distance: "1.5km", type: "Atracao" },
-  { name: "Pinacoteca", distance: "2km", type: "Cultura" },
-  { name: "Praca da Se", distance: "2km", type: "Atracao" },
-  { name: "Museu da Lingua Portuguesa", distance: "1.8km", type: "Cultura" },
-  { name: "Rua 25 de Marco", distance: "1.2km", type: "Comercio" },
-  { name: "MASP", distance: "5km", type: "Cultura" },
-  { name: "Parque Ibirapuera", distance: "8km", type: "Lazer" },
+  { name: "Estação Armênia (Metrô)", distance: "900m", type: "Transporte" },
+  { name: "Shopping D", distance: "500m", type: "Comércio" },
+  { name: "Estádio do Canindé", distance: "600m", type: "Esporte" },
+  { name: "Museu Catavento", distance: "1.5km", type: "Cultura" },
+  { name: "Feira Kantuta", distance: "800m", type: "Cultura" },
+  { name: "Feira da Madrugada", distance: "1.2km", type: "Comércio" },
+  { name: "Rua 25 de Março", distance: "2km", type: "Comércio" },
+  { name: "Mercado Municipal", distance: "2km", type: "Atração" },
+  { name: "Pinacoteca", distance: "2.5km", type: "Cultura" },
 ];
 
 export default function LocalizacaoPage() {
@@ -57,80 +71,90 @@ export default function LocalizacaoPage() {
             Como Chegar
           </h1>
           <p className="text-[var(--color-text-light)] max-w-2xl mx-auto text-lg">
-            Localizacao privilegiada no coracao do Bras, com facil acesso ao
-            transporte publico e principais pontos de Sao Paulo.
+            Localização privilegiada no bairro do Canindé, com fácil acesso ao
+            metrô e principais pontos de São Paulo.
           </p>
         </div>
       </section>
 
-      {/* Map and Address */}
+      {/* Units with Maps */}
       <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Map */}
-            <div className="relative h-[500px] rounded-2xl overflow-hidden shadow-lg">
-              <iframe
-                src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.5!2d${hotelInfo.coordinates.lng}!3d${hotelInfo.coordinates.lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDMyJzUxLjAiUyA0NsKwMzYnNTYuOSJX!5e0!3m2!1spt-BR!2sbr!4v1234567890`}
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Localizacao do Hotel Bras"
-              />
-            </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+          {units.map((unit, index) => (
+            <div
+              key={unit.name}
+              className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-start ${
+                index % 2 === 1 ? "lg:flex-row-reverse" : ""
+              }`}
+            >
+              {/* Map */}
+              <div className={`relative h-[400px] rounded-2xl overflow-hidden shadow-lg ${index % 2 === 1 ? "lg:order-2" : ""}`}>
+                <iframe
+                  src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=${encodeURIComponent(unit.address + ", " + unit.city + " - " + unit.state)}&zoom=17`}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title={`Localização - ${unit.name}`}
+                />
+              </div>
 
-            {/* Address and Directions */}
-            <div>
-              <div className="bg-[var(--color-light)] rounded-2xl p-8 mb-8">
-                <div className="flex items-start gap-4">
-                  <div className="p-3 bg-[var(--color-secondary)] rounded-xl">
-                    <MapPin className="w-6 h-6 text-[var(--color-primary)]" />
-                  </div>
-                  <div>
-                    <h2 className="font-serif text-2xl font-bold text-[var(--color-primary)] mb-2">
-                      {hotelInfo.name}
-                    </h2>
-                    <p className="text-[var(--color-text)]">
-                      {hotelInfo.address}
-                      <br />
-                      {hotelInfo.city} - {hotelInfo.state}
-                      <br />
-                      CEP: {hotelInfo.zipCode}
-                    </p>
-                    <a
-                      href={`https://www.google.com/maps/dir/?api=1&destination=${hotelInfo.coordinates.lat},${hotelInfo.coordinates.lng}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-block mt-4 text-[var(--color-accent)] font-medium hover:underline"
-                    >
-                      Abrir no Google Maps →
-                    </a>
+              {/* Address */}
+              <div className={index % 2 === 1 ? "lg:order-1" : ""}>
+                <div className="bg-[var(--color-light)] rounded-2xl p-8">
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 bg-[var(--color-secondary)] rounded-xl">
+                      <MapPin className="w-6 h-6 text-[var(--color-primary)]" />
+                    </div>
+                    <div>
+                      <h2 className="font-serif text-2xl font-bold text-[var(--color-primary)] mb-2">
+                        {unit.name}
+                      </h2>
+                      <p className="text-[var(--color-text)]">
+                        {unit.address}
+                        <br />
+                        {unit.city} - {unit.state}
+                        <br />
+                        CEP: {unit.zipCode}
+                      </p>
+                      <a
+                        href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(unit.address + ", " + unit.city + " " + unit.state)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block mt-4 text-[var(--color-accent)] font-medium hover:underline"
+                      >
+                        Abrir no Google Maps →
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
+            </div>
+          ))}
 
-              <h3 className="font-serif text-xl font-bold text-[var(--color-primary)] mb-6">
-                Como Chegar
-              </h3>
-              <div className="space-y-6">
-                {directions.map((dir) => (
-                  <div key={dir.title} className="flex gap-4">
-                    <div className="p-2 bg-[var(--color-secondary-light)] rounded-lg h-fit">
-                      <dir.icon className="w-5 h-5 text-[var(--color-primary)]" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-[var(--color-primary)] mb-1">
-                        {dir.title}
-                      </h4>
-                      <p className="text-sm text-[var(--color-text-light)]">
-                        {dir.description}
-                      </p>
-                    </div>
+          {/* Directions */}
+          <div>
+            <h3 className="font-serif text-xl font-bold text-[var(--color-primary)] mb-6">
+              Como Chegar
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {directions.map((dir) => (
+                <div key={dir.title} className="flex gap-4">
+                  <div className="p-2 bg-[var(--color-secondary-light)] rounded-lg h-fit">
+                    <dir.icon className="w-5 h-5 text-[var(--color-primary)]" />
                   </div>
-                ))}
-              </div>
+                  <div>
+                    <h4 className="font-semibold text-[var(--color-primary)] mb-1">
+                      {dir.title}
+                    </h4>
+                    <p className="text-sm text-[var(--color-text-light)]">
+                      {dir.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

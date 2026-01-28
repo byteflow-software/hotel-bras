@@ -1,16 +1,3 @@
-// Room Types
-export interface Room {
-  id: string;
-  name: string;
-  description: string;
-  shortDescription: string;
-  photos: string[];
-  maxOccupancy: number;
-  beds: string;
-  size: number; // m²
-  amenities: string[];
-}
-
 // Customer Types
 export interface Customer {
   id: string;

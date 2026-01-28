@@ -1,39 +1,23 @@
-"use client";
-
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import {
   Bed,
-  Users,
+  MessageSquare,
   TrendingUp,
   Phone,
 } from "lucide-react";
 import { AdminLayout } from "@/components/admin";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { customers } from "@/lib/mock";
-import { rooms } from "@/lib/mock";
+import Link from "next/link";
+import { getUnreadContactsCount, getContacts } from "./contatos/actions";
+import { getAllRoomTypesForAdmin } from "@/lib/data/rooms";
 
-export default function AdminDashboard() {
-  const router = useRouter();
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+export default async function AdminDashboard() {
+  const [unreadContacts, allContacts, rooms] = await Promise.all([
+    getUnreadContactsCount(),
+    getContacts(),
+    getAllRoomTypesForAdmin(),
+  ]);
 
-  useEffect(() => {
-    // Mock authentication check
-    const auth = localStorage.getItem("admin_auth");
-    if (auth === "true") {
-      setIsAuthenticated(true);
-    } else {
-      // Auto-login for demo
-      localStorage.setItem("admin_auth", "true");
-      setIsAuthenticated(true);
-    }
-  }, [router]);
-
-  if (!isAuthenticated) {
-    return null;
-  }
-
-  const totalCustomers = customers.length;
+  const totalContacts = allContacts.length;
   const totalRooms = rooms.length;
 
   const stats = [
@@ -44,13 +28,14 @@ export default function AdminDashboard() {
       color: "bg-blue-500",
     },
     {
-      title: "Clientes",
-      value: totalCustomers.toString(),
-      icon: Users,
+      title: "Mensagens",
+      value: totalContacts.toString(),
+      subtitle: unreadContacts > 0 ? `${unreadContacts} não lidas` : undefined,
+      icon: MessageSquare,
       color: "bg-purple-500",
     },
     {
-      title: "Taxa de Ocupacao",
+      title: "Taxa de Ocupação",
       value: "72%",
       icon: TrendingUp,
       color: "bg-green-500",
@@ -72,7 +57,7 @@ export default function AdminDashboard() {
             Dashboard
           </h1>
           <p className="text-[var(--color-text-light)]">
-            Bem-vindo ao painel administrativo do Hotel Bras
+            Bem-vindo ao painel administrativo do Hotel Brás
           </p>
         </div>
 
@@ -97,6 +82,11 @@ export default function AdminDashboard() {
                   <p className="text-sm text-[var(--color-text-light)]">
                     {stat.title}
                   </p>
+                  {stat.subtitle && (
+                    <p className="text-xs text-orange-500 font-medium mt-1">
+                      {stat.subtitle}
+                    </p>
+                  )}
                 </div>
               </CardContent>
             </Card>
@@ -107,54 +97,69 @@ export default function AdminDashboard() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <Card>
             <CardHeader>
-              <CardTitle>Quartos Disponiveis</CardTitle>
+              <CardTitle>Ações Rápidas</CardTitle>
             </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {rooms.slice(0, 5).map((room) => (
-                  <div
-                    key={room.id}
-                    className="flex items-center justify-between p-3 bg-[var(--color-light)] rounded-lg"
-                  >
-                    <div>
-                      <p className="font-medium text-[var(--color-primary)]">
-                        {room.name}
-                      </p>
-                      <p className="text-sm text-[var(--color-text-light)]">
-                        Ate {room.maxOccupancy} hospedes - {room.size}m²
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+            <CardContent className="space-y-4">
+              <Link
+                href="/admin/quartos"
+                className="w-full flex items-center justify-between p-3 bg-[var(--color-light)] rounded-lg hover:bg-[var(--color-light)]/80 transition-colors"
+              >
+                <div className="flex items-center gap-3">
+                  <Bed className="w-5 h-5 text-[var(--color-accent)]" />
+                  <span className="font-medium text-[var(--color-primary)]">
+                    Gerenciar Quartos
+                  </span>
+                </div>
+                <span className="text-sm text-[var(--color-text-light)]">
+                  Editar fotos, descrições e comodidades
+                </span>
+              </Link>
+              <Link
+                href="/admin/contatos"
+                className="w-full flex items-center justify-between p-3 bg-[var(--color-light)] rounded-lg hover:bg-[var(--color-light)]/80 transition-colors"
+              >
+                <div className="flex items-center gap-3">
+                  <MessageSquare className="w-5 h-5 text-[var(--color-accent)]" />
+                  <span className="font-medium text-[var(--color-primary)]">
+                    Ver Contatos
+                  </span>
+                </div>
+                <span className="text-sm text-[var(--color-text-light)]">
+                  {unreadContacts > 0
+                    ? `${unreadContacts} mensagens não lidas`
+                    : `${totalContacts} mensagens recebidas`}
+                </span>
+              </Link>
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader>
-              <CardTitle>Informacoes Rapidas</CardTitle>
+              <CardTitle>Informações Rápidas</CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                <p className="font-semibold text-blue-800">Check-ins hoje: 2</p>
+                <p className="font-semibold text-blue-800">2 Unidades</p>
                 <p className="text-sm text-blue-700">
-                  Hospedes chegando hoje
+                  Autônoma e Flat operacionais
                 </p>
               </div>
 
               <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
-                <p className="font-semibold text-green-800">Check-outs hoje: 1</p>
+                <p className="font-semibold text-green-800">{totalRooms} Tipos de Quarto</p>
                 <p className="text-sm text-green-700">
-                  Hospedes saindo hoje
+                  Disponíveis para hóspedes
                 </p>
               </div>
 
               <div className="p-4 bg-purple-50 border border-purple-200 rounded-lg">
                 <p className="font-semibold text-purple-800">
-                  {totalCustomers} clientes cadastrados
+                  {totalContacts} mensagens recebidas
                 </p>
                 <p className="text-sm text-purple-700">
-                  Base de clientes do hotel
+                  {unreadContacts > 0
+                    ? `${unreadContacts} aguardando resposta`
+                    : "Todas respondidas"}
                 </p>
               </div>
             </CardContent>

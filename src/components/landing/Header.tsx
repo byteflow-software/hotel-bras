@@ -6,12 +6,12 @@ import Image from "next/image";
 import { Menu, X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { hotelInfo } from "@/lib/mock";
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/acomodacoes", label: "Acomodacoes" },
-  { href: "/estrutura", label: "Estrutura" },
-  { href: "/localizacao", label: "Localizacao" },
+  { href: "/acomodacoes", label: "Acomodações" },
+  { href: "/localizacao", label: "Localização" },
   { href: "/contato", label: "Contato" },
 ];
 
@@ -26,13 +26,13 @@ export function Header() {
           <Link href="/" className="flex items-center gap-3">
             <Image
               src="/logo-hotel.jpeg"
-              alt="Hotel Bras"
+              alt="Hotel Brás"
               width={50}
               height={50}
               className="rounded-lg"
             />
             <span className="font-serif text-xl font-bold text-[var(--color-primary)] hidden sm:block">
-              Hotel Bras
+              Hotel Brás
             </span>
           </Link>
 
@@ -52,11 +52,11 @@ export function Header() {
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center gap-4">
             <a
-              href="tel:+551133334444"
+              href={`tel:+55${hotelInfo.phone.replace(/\D/g, "")}`}
               className="flex items-center gap-2 text-[var(--color-text-light)] hover:text-[var(--color-accent)] transition-colors"
             >
               <Phone className="w-4 h-4" />
-              <span className="text-sm">(11) 3333-4444</span>
+              <span className="text-sm">{hotelInfo.phone}</span>
             </a>
             <Button asChild size="lg">
               <Link href="/contato">Fale Conosco</Link>
@@ -97,11 +97,11 @@ export function Header() {
             ))}
             <div className="pt-4 flex flex-col gap-3">
               <a
-                href="tel:+551133334444"
+                href={`tel:+55${hotelInfo.phone.replace(/\D/g, "")}`}
                 className="flex items-center gap-2 text-[var(--color-text-light)]"
               >
                 <Phone className="w-4 h-4" />
-                <span>(11) 3333-4444</span>
+                <span>{hotelInfo.phone}</span>
               </a>
               <Button asChild size="lg" className="w-full">
                 <Link href="/contato">Fale Conosco</Link>

@@ -15,7 +15,18 @@
       "Bash(timeout /t 2)",
       "Bash(npm uninstall:*)",
       "Bash(rm:*)",
-      "Bash(npx next build)"
+      "Bash(npx next build)",
+      "Bash(dir /s /b \"C:\\\\Users\\\\ryanm\\\\OneDrive\\\\Documentos\\\\GitHub\\\\hotel-bras\\\\public\\\\rooms\")",
+      "Bash(node scripts/convert-images.mjs:*)",
+      "Bash(npx prisma init)",
+      "Bash(npx prisma migrate:*)",
+      "Bash(timeout 30 bash:*)",
+      "Bash(npx prisma db seed)",
+      "Bash(npx prisma generate:*)",
+      "Bash(node --version:*)",
+      "Bash(npx tsx:*)",
+      "WebSearch",
+      "Bash(dir \"C:\\\\Users\\\\ryanm\\\\OneDrive\\\\Documentos\\\\GitHub\\\\hotel-bras\\\\public\\\\rooms\\\\area-comum-autonomo\")"
     ]
   }
 }

@@ -1,22 +1,39 @@
 import { HotelInfo, Service, Customer } from "@/types";
 
 export const hotelInfo: HotelInfo = {
-  name: "Hotel Bras",
+  name: "Hotel Brás",
   description:
-    "Localizado no coracao do bairro do Bras, em Sao Paulo, o Hotel Bras oferece uma combinacao perfeita de conforto, elegancia e praticidade. Com facil acesso ao comercio local, estacoes de metro e principais pontos turisticos da cidade, somos a escolha ideal para viajantes de negocios e turistas que buscam uma hospedagem de qualidade.",
+    "Localizado no bairro do Canindé, em São Paulo, o Hotel Brás oferece duas unidades com opções para todos os perfis de hóspede. Com fácil acesso ao comércio local, estações de metrô e principais pontos da cidade, somos a escolha ideal para viajantes de negócios e turistas.",
   logo: "/logo-hotel.jpeg",
-  address: "Rua Oriente, 500",
-  city: "Sao Paulo",
+  address: "Rua Canindé, 469 - Canindé",
+  city: "São Paulo",
   state: "SP",
-  zipCode: "03016-000",
-  phone: "(11) 3333-4444",
-  whatsapp: "(11) 99999-8888",
+  zipCode: "03033-000",
+  phone: "(11) 3326-4952",
+  whatsapp: "(11) 98453-8996",
   email: "reservas@hotelbras.com.br",
   checkInTime: "14:00",
   checkOutTime: "12:00",
   coordinates: {
-    lat: -23.5475,
-    lng: -46.6158,
+    lat: -23.5279,
+    lng: -46.6187,
+  },
+};
+
+export const unitAddresses = {
+  autonoma: {
+    name: "Hotel Brás - Unidade Autônoma",
+    address: "Rua Canindé, 469 - Canindé",
+    city: "São Paulo",
+    state: "SP",
+    zipCode: "03033-000",
+  },
+  flat: {
+    name: "Hotel Brás Flat",
+    address: "Rua Canindé, 445 - Canindé",
+    city: "São Paulo",
+    state: "SP",
+    zipCode: "03033-000",
   },
 };
 
@@ -34,12 +51,6 @@ export const services: Service[] = [
     icon: "Coffee",
   },
   {
-    id: "parking",
-    name: "Estacionamento",
-    description: "Estacionamento privativo com manobrista",
-    icon: "Car",
-  },
-  {
     id: "reception",
     name: "Recepcao 24h",
     description: "Atendimento 24 horas para sua comodidade",
@@ -50,24 +61,6 @@ export const services: Service[] = [
     name: "Ar Condicionado",
     description: "Climatizacao em todos os quartos",
     icon: "Wind",
-  },
-  {
-    id: "safe",
-    name: "Cofre",
-    description: "Cofre digital em todos os quartos",
-    icon: "Lock",
-  },
-  {
-    id: "laundry",
-    name: "Lavanderia",
-    description: "Servico de lavanderia express",
-    icon: "Shirt",
-  },
-  {
-    id: "roomservice",
-    name: "Room Service",
-    description: "Servico de quarto disponivel",
-    icon: "UtensilsCrossed",
   },
 ];
 

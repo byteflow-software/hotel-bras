@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Phone, Mail, MapPin, Clock, Instagram, Facebook } from "lucide-react";
-import { hotelInfo } from "@/lib/mock";
+import { hotelInfo, unitAddresses } from "@/lib/mock";
 
 export function Footer() {
   return (
@@ -56,14 +56,6 @@ export function Footer() {
                   className="text-white/80 hover:text-[var(--color-secondary)] transition-colors"
                 >
                   Acomodacoes
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/estrutura"
-                  className="text-white/80 hover:text-[var(--color-secondary)] transition-colors"
-                >
-                  Estrutura
                 </Link>
               </li>
               <li>
@@ -134,13 +126,19 @@ export function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-[var(--color-secondary)] flex-shrink-0 mt-0.5" />
-                <span className="text-white/80 text-sm">
-                  {hotelInfo.address}
-                  <br />
-                  {hotelInfo.city} - {hotelInfo.state}
-                  <br />
-                  CEP: {hotelInfo.zipCode}
-                </span>
+                <div className="text-white/80 text-sm space-y-2">
+                  <p>
+                    <strong className="text-white/90">Autônoma:</strong>{" "}
+                    {unitAddresses.autonoma.address}
+                  </p>
+                  <p>
+                    <strong className="text-white/90">Flat:</strong>{" "}
+                    {unitAddresses.flat.address}
+                  </p>
+                  <p>
+                    {unitAddresses.autonoma.city} - {unitAddresses.autonoma.state} | CEP: {unitAddresses.autonoma.zipCode}
+                  </p>
+                </div>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-[var(--color-secondary)]" />

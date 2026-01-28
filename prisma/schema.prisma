@@ -1,0 +1,57 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Unit {
+  id                 String     @id @default(cuid())
+  name               String
+  slug               String     @unique
+  description        String     @db.Text
+  hasBreakfast       Boolean    @default(false)
+  hasInPersonService Boolean    @default(false)
+  serviceHours       String?
+  entryMethod        String?
+  commonAreas        String[]
+  commonAreaPhotos   String[]
+  roomTypes          RoomType[]
+  createdAt          DateTime   @default(now())
+  updatedAt          DateTime   @updatedAt
+}
+
+model RoomType {
+  id               String   @id @default(cuid())
+  unitId           String
+  unit             Unit     @relation(fields: [unitId], references: [id], onDelete: Cascade)
+  name             String
+  slug             String   @unique
+  description      String   @db.Text
+  shortDescription String
+  photos           String[]
+  maxOccupancy     Int
+  beds             String
+  size             Int
+  amenities        String[]
+  hasKitchen       Boolean  @default(false)
+  displayOrder     Int      @default(0)
+  isActive         Boolean  @default(true)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([unitId])
+}
+
+model Contact {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  subject   String
+  message   String   @db.Text
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
