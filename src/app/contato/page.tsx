@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { hotelInfo, unitAddresses } from "@/lib/mock";
-import { createContact } from "@/app/admin/contatos/actions";
+import { createContact } from "@/app/gerenciar/contatos/actions";
 
 export default function ContatoPage() {
   const [formData, setFormData] = useState({

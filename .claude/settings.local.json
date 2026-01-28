@@ -26,7 +26,9 @@
       "Bash(node --version:*)",
       "Bash(npx tsx:*)",
       "WebSearch",
-      "Bash(dir \"C:\\\\Users\\\\ryanm\\\\OneDrive\\\\Documentos\\\\GitHub\\\\hotel-bras\\\\public\\\\rooms\\\\area-comum-autonomo\")"
+      "Bash(dir \"C:\\\\Users\\\\ryanm\\\\OneDrive\\\\Documentos\\\\GitHub\\\\hotel-bras\\\\public\\\\rooms\\\\area-comum-autonomo\")",
+      "Bash(dir:*)",
+      "Bash(git mv:*)"
     ]
   }
 }

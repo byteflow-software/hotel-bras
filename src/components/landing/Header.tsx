@@ -24,12 +24,21 @@ export function Header() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3">
+            {/* Icon for mobile */}
             <Image
-              src="/logo-hotel.jpeg"
+              src="/icon.png"
+              alt="Hotel Brás"
+              width={40}
+              height={40}
+              className="rounded-lg sm:hidden"
+            />
+            {/* Full logo for desktop */}
+            <Image
+              src="/logo.png"
               alt="Hotel Brás"
               width={50}
               height={50}
-              className="rounded-lg"
+              className="rounded-lg hidden sm:block"
             />
             <span className="font-serif text-xl font-bold text-[var(--color-primary)] hidden sm:block">
               Hotel Brás

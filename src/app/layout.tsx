@@ -14,12 +14,20 @@ export const metadata: Metadata = {
     "acomodacoes",
   ],
   authors: [{ name: "Hotel Bras" }],
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "192x192" },
+    ],
+    apple: { url: "/icon.png", sizes: "180x180" },
+  },
   openGraph: {
     title: "Hotel Bras - Hospedagem no coracao de Sao Paulo",
     description:
       "Conforto, elegancia e localizacao privilegiada. Reserve agora!",
     type: "website",
     locale: "pt_BR",
+    images: [{ url: "/logo.png" }],
   },
 };
 

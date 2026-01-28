@@ -4,7 +4,7 @@ export const hotelInfo: HotelInfo = {
   name: "Hotel Brás",
   description:
     "Localizado no bairro do Canindé, em São Paulo, o Hotel Brás oferece duas unidades com opções para todos os perfis de hóspede. Com fácil acesso ao comércio local, estações de metrô e principais pontos da cidade, somos a escolha ideal para viajantes de negócios e turistas.",
-  logo: "/logo-hotel.jpeg",
+  logo: "/logo.png",
   address: "Rua Canindé, 469 - Canindé",
   city: "São Paulo",
   state: "SP",

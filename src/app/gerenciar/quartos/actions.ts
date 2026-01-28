@@ -37,7 +37,7 @@ export async function updateRoomType(
     },
   });
 
-  revalidatePath("/admin/quartos");
+  revalidatePath("/gerenciar/quartos");
   revalidatePath("/acomodacoes");
   revalidatePath("/");
 
@@ -72,7 +72,7 @@ export async function createRoomType(data: {
     },
   });
 
-  revalidatePath("/admin/quartos");
+  revalidatePath("/gerenciar/quartos");
   revalidatePath("/acomodacoes");
   revalidatePath("/");
 
@@ -84,7 +84,7 @@ export async function deleteRoomType(id: string) {
     where: { id },
   });
 
-  revalidatePath("/admin/quartos");
+  revalidatePath("/gerenciar/quartos");
   revalidatePath("/acomodacoes");
   revalidatePath("/");
 }

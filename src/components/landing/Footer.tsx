@@ -12,7 +12,7 @@ export function Footer() {
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center gap-3 mb-6">
               <Image
-                src="/logo-hotel.jpeg"
+                src="/logo.png"
                 alt="Hotel Bras"
                 width={60}
                 height={60}

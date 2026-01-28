@@ -101,7 +101,7 @@ export default async function AdminDashboard() {
             </CardHeader>
             <CardContent className="space-y-4">
               <Link
-                href="/admin/quartos"
+                href="/gerenciar/quartos"
                 className="w-full flex items-center justify-between p-3 bg-[var(--color-light)] rounded-lg hover:bg-[var(--color-light)]/80 transition-colors"
               >
                 <div className="flex items-center gap-3">
@@ -115,7 +115,7 @@ export default async function AdminDashboard() {
                 </span>
               </Link>
               <Link
-                href="/admin/contatos"
+                href="/gerenciar/contatos"
                 className="w-full flex items-center justify-between p-3 bg-[var(--color-light)] rounded-lg hover:bg-[var(--color-light)]/80 transition-colors"
               >
                 <div className="flex items-center gap-3">

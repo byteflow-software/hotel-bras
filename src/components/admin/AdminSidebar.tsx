@@ -16,10 +16,10 @@ import {
 import { cn } from "@/lib/utils";
 
 const menuItems = [
-  { href: "/admin", icon: LayoutDashboard, label: "Dashboard" },
-  { href: "/admin/quartos", icon: Bed, label: "Quartos" },
-  { href: "/admin/contatos", icon: MessageSquare, label: "Contatos" },
-  { href: "/admin/configuracoes", icon: Settings, label: "Configurações" },
+  { href: "/gerenciar", icon: LayoutDashboard, label: "Dashboard" },
+  { href: "/gerenciar/quartos", icon: Bed, label: "Quartos" },
+  { href: "/gerenciar/contatos", icon: MessageSquare, label: "Contatos" },
+  { href: "/gerenciar/configuracoes", icon: Settings, label: "Configurações" },
 ];
 
 interface AdminSidebarProps {
@@ -31,7 +31,7 @@ export function AdminSidebar({ onLogout }: AdminSidebarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const isActive = (href: string) => {
-    if (href === "/admin") return pathname === "/admin";
+    if (href === "/gerenciar") return pathname === "/gerenciar";
     return pathname.startsWith(href);
   };
 
@@ -63,9 +63,9 @@ export function AdminSidebar({ onLogout }: AdminSidebarProps) {
         <div className="flex flex-col h-full">
           {/* Logo */}
           <div className="p-6 border-b border-white/10">
-            <Link href="/admin" className="flex items-center gap-3">
+            <Link href="/gerenciar" className="flex items-center gap-3">
               <Image
-                src="/logo-hotel.jpeg"
+                src="/logo.png"
                 alt="Hotel Bras"
                 width={40}
                 height={40}

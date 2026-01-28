@@ -1,7 +1,9 @@
-import { Users, Maximize, Bed, Check, Coffee, User, Clock } from "lucide-react";
+import { Users, Maximize, Bed, Check, Coffee, User, Clock, Sofa } from "lucide-react";
 import { Header, Footer } from "@/components/landing";
 import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
 import { ImageCarousel } from "@/components/ui/image-carousel";
+import { CommonAreasGallery } from "@/components/landing/CommonAreasGallery";
 import { getUnitsWithRoomTypes } from "@/lib/data/rooms";
 
 export const metadata = {
@@ -79,23 +81,47 @@ export default async function AcomodacoesPage() {
                 )}
               </div>
 
-              {/* Common Areas */}
-              {unit.commonAreas.length > 0 && (
-                <div className="mb-4">
-                  <h3 className="font-semibold text-[var(--color-primary)] mb-2 text-sm uppercase tracking-wide">
-                    Áreas comuns
-                  </h3>
-                  <div className="flex flex-wrap gap-2">
-                    {unit.commonAreas.map((area) => (
-                      <span
-                        key={area}
-                        className="text-sm px-3 py-1 bg-white border border-[var(--border)] rounded-full text-[var(--color-text-light)]"
-                      >
-                        {area}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+              {/* Common Areas Section - Improved UX/UI */}
+              {(unit.commonAreas.length > 0 || unit.commonAreaPhotos.length > 0) && (
+                <Card className="overflow-hidden border-0 shadow-lg">
+                  <CardContent className="p-0">
+                    <div className="grid grid-cols-1 lg:grid-cols-2">
+                      {/* Photos Side */}
+                      {unit.commonAreaPhotos.length > 0 && (
+                        <CommonAreasGallery
+                          photos={unit.commonAreaPhotos}
+                          unitName={unit.name}
+                        />
+                      )}
+
+                      {/* Info Side */}
+                      <div className="p-6 lg:p-8 flex flex-col justify-center bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-primary-light)]">
+                        <div className="flex items-center gap-3 mb-4">
+                          <div className="p-2 bg-white/20 rounded-lg">
+                            <Sofa className="w-6 h-6 text-[var(--color-secondary)]" />
+                          </div>
+                          <h3 className="font-serif text-2xl font-bold text-white">
+                            Áreas Comuns
+                          </h3>
+                        </div>
+                        <p className="text-white/80 text-sm mb-6">
+                          Espaços compartilhados para seu conforto e comodidade
+                        </p>
+                        <ul className="space-y-3">
+                          {unit.commonAreas.map((area) => (
+                            <li
+                              key={area}
+                              className="flex items-center gap-3 text-white"
+                            >
+                              <span className="w-2 h-2 rounded-full bg-[var(--color-secondary)]" />
+                              <span>{area}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
               )}
             </div>
 

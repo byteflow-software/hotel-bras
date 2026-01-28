@@ -57,7 +57,7 @@ export default function AdminConfiguracoesPage() {
             <div className="flex items-center gap-6">
               <div className="relative w-24 h-24 rounded-lg overflow-hidden bg-[var(--color-light)]">
                 <Image
-                  src="/logo-hotel.jpeg"
+                  src="/logo.png"
                   alt="Logo"
                   fill
                   className="object-cover"

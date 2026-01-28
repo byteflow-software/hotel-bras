@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { AdminSidebar } from "./AdminSidebar";
 
@@ -12,8 +11,10 @@ export function AdminLayout({ children }: AdminLayoutProps) {
   const router = useRouter();
 
   const handleLogout = () => {
-    // Mock logout
-    router.push("/admin/login");
+    // Clear auth cookie and localStorage
+    document.cookie = "admin_session=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    localStorage.removeItem("admin_auth");
+    router.push("/gerenciar/login");
   };
 
   return (

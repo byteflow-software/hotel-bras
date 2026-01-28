@@ -20,8 +20,8 @@ export async function markContactAsRead(id: string) {
     where: { id },
     data: { isRead: true },
   });
-  revalidatePath("/admin/contatos");
-  revalidatePath("/admin");
+  revalidatePath("/gerenciar/contatos");
+  revalidatePath("/gerenciar");
 }
 
 export async function markAllContactsAsRead() {
@@ -29,16 +29,16 @@ export async function markAllContactsAsRead() {
     where: { isRead: false },
     data: { isRead: true },
   });
-  revalidatePath("/admin/contatos");
-  revalidatePath("/admin");
+  revalidatePath("/gerenciar/contatos");
+  revalidatePath("/gerenciar");
 }
 
 export async function deleteContact(id: string) {
   await prisma.contact.delete({
     where: { id },
   });
-  revalidatePath("/admin/contatos");
-  revalidatePath("/admin");
+  revalidatePath("/gerenciar/contatos");
+  revalidatePath("/gerenciar");
 }
 
 export async function createContact(data: {
@@ -51,5 +51,5 @@ export async function createContact(data: {
   await prisma.contact.create({
     data,
   });
-  revalidatePath("/admin/contatos");
+  revalidatePath("/gerenciar/contatos");
 }
