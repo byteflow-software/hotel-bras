@@ -6,6 +6,8 @@ import { ImageCarousel } from "@/components/ui/image-carousel";
 import { CommonAreasGallery } from "@/components/landing/CommonAreasGallery";
 import { getUnitsWithRoomTypes } from "@/lib/data/rooms";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "Acomodações | Hotel Brás",
   description:

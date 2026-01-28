@@ -1,7 +1,8 @@
 import { AdminLayout } from "@/components/admin";
-import { getAllRoomTypesForAdmin } from "@/lib/data/rooms";
-import { getAllUnits } from "@/lib/data/rooms";
+import { getAllRoomTypesForAdmin, getAllUnits } from "@/lib/data/rooms";
 import { QuartosContent } from "./quartos-content";
+
+export const dynamic = "force-dynamic";
 
 export default async function AdminQuartosPage() {
   const [rooms, units] = await Promise.all([

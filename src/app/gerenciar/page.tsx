@@ -10,6 +10,8 @@ import Link from "next/link";
 import { getUnreadContactsCount, getContacts } from "./contatos/actions";
 import { getAllRoomTypesForAdmin } from "@/lib/data/rooms";
 
+export const dynamic = "force-dynamic";
+
 export default async function AdminDashboard() {
   const [unreadContacts, allContacts, rooms] = await Promise.all([
     getUnreadContactsCount(),
