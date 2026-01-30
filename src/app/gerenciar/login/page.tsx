@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { loginAction } from "./actions";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -22,15 +23,11 @@ export default function LoginPage() {
     setError("");
     setIsLoading(true);
 
-    // Simulated authentication - in production, use proper auth
-    // Default credentials: admin / hotel2024
-    if (username === "admin" && password === "hotel2024") {
-      // Set auth cookie
-      document.cookie = `admin_session=authenticated; path=/; max-age=${60 * 60 * 24 * 7}`; // 7 days
-      localStorage.setItem("admin_auth", "true");
+    const result = await loginAction(username, password);
+    if (result.success) {
       router.push("/gerenciar");
     } else {
-      setError("Usuário ou senha incorretos");
+      setError(result.error || "Erro ao fazer login");
     }
 
     setIsLoading(false);

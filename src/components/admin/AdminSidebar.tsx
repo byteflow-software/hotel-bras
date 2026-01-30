@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
   Bed,
+  Building2,
   MessageSquare,
   Settings,
   LogOut,
@@ -18,6 +19,7 @@ import { cn } from "@/lib/utils";
 const menuItems = [
   { href: "/gerenciar", icon: LayoutDashboard, label: "Dashboard" },
   { href: "/gerenciar/quartos", icon: Bed, label: "Quartos" },
+  { href: "/gerenciar/areas-comuns", icon: Building2, label: "Áreas Comuns" },
   { href: "/gerenciar/contatos", icon: MessageSquare, label: "Contatos" },
   { href: "/gerenciar/configuracoes", icon: Settings, label: "Configurações" },
 ];

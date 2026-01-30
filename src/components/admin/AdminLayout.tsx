@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { AdminSidebar } from "./AdminSidebar";
+import { logoutAction } from "@/app/gerenciar/login/actions";
 
 interface AdminLayoutProps {
   children: React.ReactNode;
@@ -10,10 +11,8 @@ interface AdminLayoutProps {
 export function AdminLayout({ children }: AdminLayoutProps) {
   const router = useRouter();
 
-  const handleLogout = () => {
-    // Clear auth cookie and localStorage
-    document.cookie = "admin_session=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
-    localStorage.removeItem("admin_auth");
+  const handleLogout = async () => {
+    await logoutAction();
     router.push("/gerenciar/login");
   };
 

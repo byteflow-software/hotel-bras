@@ -1,6 +1,7 @@
 import "dotenv/config";
 import { PrismaClient } from "../src/generated/prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
+import bcrypt from "bcryptjs";
 
 const dbUrl = process.env.DATABASE_URL ?? "";
 const parsed = new URL(dbUrl);
@@ -16,6 +17,19 @@ async function main() {
   // Clean existing data
   await prisma.roomType.deleteMany();
   await prisma.unit.deleteMany();
+
+  // Seed admin credentials
+  const passwordHash = await bcrypt.hash("hotel2024", 10);
+  await prisma.adminSettings.upsert({
+    where: { id: "singleton" },
+    update: {},
+    create: {
+      id: "singleton",
+      username: "admin",
+      passwordHash,
+      recoveryEmail: null,
+    },
+  });
 
   // === UNIDADE AUTÔNOMA ===
   const autonoma = await prisma.unit.create({
