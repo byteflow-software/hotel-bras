@@ -1,30 +1,76 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://hotelbras.com.br";
+
 export const metadata: Metadata = {
-  title: "Hotel Bras - Hospedagem no coracao de Sao Paulo",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Hotel Brás - Hospedagem em São Paulo | Canindé",
+    template: "%s | Hotel Brás",
+  },
   description:
-    "Bem-vindo ao Hotel Bras. Conforto, elegancia e localizacao privilegiada no coracao de Sao Paulo. Reserve agora e desfrute de uma experiencia unica.",
+    "Hotel Brás oferece hospedagem confortável no bairro do Canindé, São Paulo. Duas unidades com quartos equipados, WiFi grátis, café da manhã e excelente localização. Reserve pelo WhatsApp!",
   keywords: [
-    "hotel",
-    "hospedagem",
-    "sao paulo",
-    "bras",
-    "quartos",
-    "acomodacoes",
+    "hotel são paulo",
+    "hospedagem canindé",
+    "hotel brás",
+    "hotel barato são paulo",
+    "pousada são paulo",
+    "quartos canindé",
+    "acomodações são paulo",
+    "hotel próximo metrô",
+    "hotel centro são paulo",
+    "hospedagem econômica",
+    "hotel com café da manhã",
+    "hotel wifi grátis",
   ],
-  authors: [{ name: "Hotel Bras" }],
+  authors: [{ name: "Hotel Brás" }],
+  creator: "Hotel Brás",
+  publisher: "Hotel Brás",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   icons: {
     icon: "/favicon.ico",
+    apple: "/icon.png",
   },
   openGraph: {
-    title: "Hotel Bras - Hospedagem no coracao de Sao Paulo",
+    title: "Hotel Brás - Hospedagem em São Paulo | Canindé",
     description:
-      "Conforto, elegancia e localizacao privilegiada. Reserve agora!",
+      "Hospedagem confortável no Canindé, São Paulo. Duas unidades, quartos equipados, WiFi grátis e café da manhã. Reserve agora!",
     type: "website",
     locale: "pt_BR",
-    images: [{ url: "/logo.png" }],
+    url: siteUrl,
+    siteName: "Hotel Brás",
+    images: [
+      {
+        url: "/logo.png",
+        width: 800,
+        height: 600,
+        alt: "Hotel Brás - Hospedagem em São Paulo",
+      },
+    ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Hotel Brás - Hospedagem em São Paulo",
+    description:
+      "Hospedagem confortável no Canindé, São Paulo. Reserve pelo WhatsApp!",
+    images: ["/logo.png"],
+  },
+  alternates: {
+    canonical: siteUrl,
+  },
+  category: "travel",
 };
 
 export default function RootLayout({

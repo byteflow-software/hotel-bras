@@ -71,122 +71,139 @@ export function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div className="relative  z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-10 animate-fade-in-delay">
           Duas unidades no bairro do Canindé, em São Paulo. Conforto e
           praticidade para sua estadia perfeita.
         </p>
 
-        {/* Date Selector */}
-        <div className="max-w-4xl mx-auto bg-[#fbfbfb] backdrop-blur-sm rounded-2xl p-4 md:p-6 shadow-2xl animate-slide-up overflow-hidden">
-          {/* Row 1: Dates */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-            <div className="space-y-1.5">
-              <label className="text-xs font-medium text-[var(--color-text-light)] uppercase tracking-wide flex items-center gap-1.5">
-                <CalendarDays className="w-3.5 h-3.5" />
-                Entrada
-              </label>
-              <input
-                type="date"
-                value={checkIn}
-                onChange={(e) => setCheckIn(e.target.value)}
-                min={new Date().toISOString().split("T")[0]}
-                className="w-full max-w-full box-border rounded-lg border border-[var(--border)] bg-white px-3 py-2.5 text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent appearance-none"
-              />
+        {/* Booking Search Card */}
+        <div className="max-w-3xl mx-auto animate-slide-up">
+          <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+            {/* Card Header */}
+            <div className="bg-[var(--color-primary)] px-4 py-3 md:px-6 md:py-4">
+              <h2 className="text-white text-sm md:text-base font-medium text-center">
+                Consulte disponibilidade via WhatsApp
+              </h2>
             </div>
-            <div className="space-y-1.5">
-              <label className="text-xs font-medium text-[var(--color-text-light)] uppercase tracking-wide flex items-center gap-1.5">
-                <CalendarDays className="w-3.5 h-3.5" />
-                Saída
-              </label>
-              <input
-                type="date"
-                value={checkOut}
-                onChange={(e) => setCheckOut(e.target.value)}
-                min={checkIn || new Date().toISOString().split("T")[0]}
-                className="w-full max-w-full box-border rounded-lg border border-[var(--border)] bg-white px-3 py-2.5 text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent appearance-none"
-              />
-            </div>
-          </div>
 
-          {/* Row 2: Guests */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="space-y-1.5">
-              <label className="text-xs font-medium text-[var(--color-text-light)] uppercase tracking-wide flex items-center gap-1.5">
-                <Users className="w-3.5 h-3.5" />
-                Adultos
-              </label>
-              <select
-                value={adults}
-                onChange={(e) => setAdults(Number(e.target.value))}
-                className="w-full rounded-lg border border-[var(--border)] bg-white px-3 py-2.5 text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent"
-              >
-                {[1, 2, 3, 4, 5, 6].map((n) => (
-                  <option key={n} value={n}>
-                    {n} {n === 1 ? "adulto" : "adultos"}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="space-y-1.5">
-              <label className="text-xs font-medium text-[var(--color-text-light)] uppercase tracking-wide flex items-center gap-1.5">
-                <Baby className="w-3.5 h-3.5" />
-                Crianças
-              </label>
-              <select
-                value={children}
-                onChange={(e) => handleChildrenChange(Number(e.target.value))}
-                className="w-full rounded-lg border border-[var(--border)] bg-white px-3 py-2.5 text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent"
-              >
-                {[0, 1, 2, 3, 4].map((n) => (
-                  <option key={n} value={n}>
-                    {n} {n === 1 ? "criança" : "crianças"}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="flex items-end">
+            {/* Card Body */}
+            <div className="p-4 md:p-6 space-y-4">
+              {/* Dates Row */}
+              <div className="grid grid-cols-2 gap-3">
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-[var(--color-text)] flex items-center gap-1.5">
+                    <CalendarDays className="w-3.5 h-3.5 text-[var(--color-accent)]" />
+                    Check-in
+                  </label>
+                  <input
+                    type="date"
+                    value={checkIn}
+                    onChange={(e) => setCheckIn(e.target.value)}
+                    min={new Date().toISOString().split("T")[0]}
+                    className="w-full rounded-xl border-2 border-[var(--border)] bg-[var(--color-lighter)] px-3 py-3 text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent transition-all"
+                  />
+                </div>
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-[var(--color-text)] flex items-center gap-1.5">
+                    <CalendarDays className="w-3.5 h-3.5 text-[var(--color-accent)]" />
+                    Check-out
+                  </label>
+                  <input
+                    type="date"
+                    value={checkOut}
+                    onChange={(e) => setCheckOut(e.target.value)}
+                    min={checkIn || new Date().toISOString().split("T")[0]}
+                    className="w-full rounded-xl border-2 border-[var(--border)] bg-[var(--color-lighter)] px-3 py-3 text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent transition-all"
+                  />
+                </div>
+              </div>
+
+              {/* Guests Row */}
+              <div className="grid grid-cols-2 gap-3">
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-[var(--color-text)] flex items-center gap-1.5">
+                    <Users className="w-3.5 h-3.5 text-[var(--color-accent)]" />
+                    Adultos
+                  </label>
+                  <select
+                    value={adults}
+                    onChange={(e) => setAdults(Number(e.target.value))}
+                    className="w-full rounded-xl border-2 border-[var(--border)] bg-[var(--color-lighter)] px-3 py-3 text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent transition-all"
+                  >
+                    {[1, 2, 3, 4, 5, 6].map((n) => (
+                      <option key={n} value={n}>
+                        {n} {n === 1 ? "adulto" : "adultos"}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-[var(--color-text)] flex items-center gap-1.5">
+                    <Baby className="w-3.5 h-3.5 text-[var(--color-accent)]" />
+                    Crianças
+                  </label>
+                  <select
+                    value={children}
+                    onChange={(e) =>
+                      handleChildrenChange(Number(e.target.value))
+                    }
+                    className="w-full rounded-xl border-2 border-[var(--border)] bg-[var(--color-lighter)] px-3 py-3 text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent transition-all"
+                  >
+                    {[0, 1, 2, 3, 4].map((n) => (
+                      <option key={n} value={n}>
+                        {n} {n === 1 ? "criança" : "crianças"}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              {/* Children Ages (if any) */}
+              {children > 0 && (
+                <div className="pt-3 border-t border-[var(--border)]">
+                  <p className="text-xs font-semibold text-[var(--color-text)] mb-3">
+                    Idade das crianças
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {childrenAges.map((age, index) => (
+                      <div
+                        key={index}
+                        className="flex items-center gap-1.5 bg-[var(--color-lighter)] rounded-lg px-2 py-1.5"
+                      >
+                        <span className="text-xs text-[var(--color-text-light)]">
+                          {index + 1}:
+                        </span>
+                        <select
+                          value={age}
+                          onChange={(e) =>
+                            handleChildAgeChange(index, Number(e.target.value))
+                          }
+                          className="bg-transparent text-xs text-[var(--color-text)] focus:outline-none"
+                        >
+                          {Array.from({ length: 13 }, (_, i) => (
+                            <option key={i} value={i}>
+                              {i} {i === 1 ? "ano" : "anos"}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Search Button */}
               <Button
                 onClick={handleSearch}
                 size="lg"
-                className="w-full bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-white"
+                className="w-full bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-white py-6 text-base font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all"
               >
-                <Search className="w-4 h-4 mr-2" />
-                Consultar
+                <Search className="w-5 h-5 mr-2" />
+                Verificar Disponibilidade
               </Button>
             </div>
           </div>
-
-          {/* Row 3: Children Ages (if any) */}
-          {children > 0 && (
-            <div className="mt-4 pt-4 border-t border-[var(--border)]">
-              <p className="text-xs font-medium text-[var(--color-text-light)] uppercase tracking-wide mb-3">
-                Idade das crianças
-              </p>
-              <div className="flex flex-wrap gap-3 justify-center">
-                {childrenAges.map((age, index) => (
-                  <div key={index} className="flex items-center gap-2">
-                    <span className="text-sm text-[var(--color-text-light)]">
-                      Criança {index + 1}:
-                    </span>
-                    <select
-                      value={age}
-                      onChange={(e) =>
-                        handleChildAgeChange(index, Number(e.target.value))
-                      }
-                      className="rounded-lg border border-[var(--border)] bg-white px-2 py-1.5 text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent"
-                    >
-                      {Array.from({ length: 13 }, (_, i) => (
-                        <option key={i} value={i}>
-                          {i} {i === 1 ? "ano" : "anos"}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
         </div>
 
         {/* CTAs */}
