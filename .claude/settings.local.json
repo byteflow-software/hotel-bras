@@ -28,7 +28,11 @@
       "WebSearch",
       "Bash(dir \"C:\\\\Users\\\\ryanm\\\\OneDrive\\\\Documentos\\\\GitHub\\\\hotel-bras\\\\public\\\\rooms\\\\area-comum-autonomo\")",
       "Bash(dir:*)",
-      "Bash(git mv:*)"
+      "Bash(git mv:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git config:*)",
+      "Bash(git rm:*)"
     ]
   }
 }
