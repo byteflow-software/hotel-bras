@@ -30,6 +30,7 @@ export function Header() {
               width={44}
               height={44}
               className="rounded-lg"
+              style={{ width: "auto", height: "auto" }}
             />
             <span className="font-serif text-xl font-bold text-[var(--color-primary)]">
               Hotel Brás

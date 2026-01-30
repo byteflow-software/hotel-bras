@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Phone,
   MessageCircle,
@@ -18,6 +18,11 @@ export function Hero() {
   const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(0);
   const [childrenAges, setChildrenAges] = useState<number[]>([]);
+  const [today, setToday] = useState("");
+
+  useEffect(() => {
+    setToday(new Date().toISOString().split("T")[0]);
+  }, []);
 
   function handleChildrenChange(count: number) {
     setChildren(count);
@@ -100,7 +105,7 @@ export function Hero() {
                     type="date"
                     value={checkIn}
                     onChange={(e) => setCheckIn(e.target.value)}
-                    min={new Date().toISOString().split("T")[0]}
+                    min={today}
                     className="w-full rounded-xl border-2 border-[var(--border)] bg-[var(--color-lighter)] px-3 py-3 text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent transition-all"
                   />
                 </div>
@@ -113,7 +118,7 @@ export function Hero() {
                     type="date"
                     value={checkOut}
                     onChange={(e) => setCheckOut(e.target.value)}
-                    min={checkIn || new Date().toISOString().split("T")[0]}
+                    min={checkIn || today}
                     className="w-full rounded-xl border-2 border-[var(--border)] bg-[var(--color-lighter)] px-3 py-3 text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent transition-all"
                   />
                 </div>
