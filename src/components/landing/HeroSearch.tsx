@@ -78,7 +78,7 @@ export function Hero() {
         </p>
 
         {/* Date Selector */}
-        <div className="max-w-4xl mx-auto bg-white/95 backdrop-blur-sm rounded-2xl p-4 md:p-6 shadow-2xl animate-slide-up">
+        <div className="max-w-4xl mx-auto bg-[#fbfbfb] backdrop-blur-sm rounded-2xl p-4 md:p-6 shadow-2xl animate-slide-up overflow-hidden">
           {/* Row 1: Dates */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div className="space-y-1.5">
@@ -91,7 +91,7 @@ export function Hero() {
                 value={checkIn}
                 onChange={(e) => setCheckIn(e.target.value)}
                 min={new Date().toISOString().split("T")[0]}
-                className="w-full rounded-lg border border-[var(--border)] bg-white px-3 py-2.5 text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent"
+                className="w-full max-w-full box-border rounded-lg border border-[var(--border)] bg-white px-3 py-2.5 text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent appearance-none"
               />
             </div>
             <div className="space-y-1.5">
@@ -104,7 +104,7 @@ export function Hero() {
                 value={checkOut}
                 onChange={(e) => setCheckOut(e.target.value)}
                 min={checkIn || new Date().toISOString().split("T")[0]}
-                className="w-full rounded-lg border border-[var(--border)] bg-white px-3 py-2.5 text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent"
+                className="w-full max-w-full box-border rounded-lg border border-[var(--border)] bg-white px-3 py-2.5 text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent appearance-none"
               />
             </div>
           </div>
