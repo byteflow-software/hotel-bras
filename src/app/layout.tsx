@@ -15,11 +15,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Hotel Bras" }],
   icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/icon.png", type: "image/png", sizes: "192x192" },
-    ],
-    apple: { url: "/icon.png", sizes: "180x180" },
+    icon: "/favicon.ico",
   },
   openGraph: {
     title: "Hotel Bras - Hospedagem no coracao de Sao Paulo",
