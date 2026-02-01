@@ -268,15 +268,9 @@ export function ChatWidget() {
 
         {/* Footer */}
         <div className="p-3 border-t border-[var(--border)] bg-[var(--color-lighter)]">
-          <a
-            href={`https://wa.me/55${hotelInfo.whatsapp.replace(/\D/g, "")}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 w-full py-2 px-4 bg-[var(--color-accent)] text-white rounded-lg hover:bg-[var(--color-accent-hover)] transition-colors text-sm font-medium"
-          >
-            <MessageCircle className="w-4 h-4" />
-            Falar pelo WhatsApp
-          </a>
+          <p className="text-xs text-center text-[var(--color-text-light)]">
+            Hotel Brás - Assistente Virtual
+          </p>
         </div>
       </div>
     </>

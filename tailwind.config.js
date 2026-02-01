@@ -53,8 +53,8 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
-        serif: ["Playfair Display", "ui-serif", "Georgia", "serif"],
+        sans: ["Lato", "ui-sans-serif", "system-ui", "sans-serif"],
+        serif: ["Raleway", "ui-serif", "Georgia", "serif"],
       },
       borderRadius: {
         lg: "0.5rem",

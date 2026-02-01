@@ -1,10 +1,11 @@
 import { MapPin, Train, Bus, Car, Plane } from "lucide-react";
 import { Header, Footer } from "@/components/landing";
+import { BrasMap } from "@/components/landing/BrasMap";
 import { hotelInfo, unitAddresses } from "@/lib/mock";
 
 export const metadata = {
   title: "Localização | Hotel Brás",
-  description: "Saiba como chegar ao Hotel Brás no bairro do Canindé, São Paulo.",
+  description: "Saiba como chegar ao Hotel Brás no bairro do Brás, São Paulo.",
 };
 
 const units = [
@@ -25,7 +26,7 @@ const directions = [
     icon: Train,
     title: "De Metrô",
     description:
-      "Estação Armênia (Linha 1 - Azul), a cerca de 12 minutos a pé. Também é possível descer na estação Portuguesa-Tietê (Linha 1 - Azul), a cerca de 15 minutos a pé.",
+      "Estação Armênia (Linha 1 - Azul), a cerca de 12 minutos a pé. Se você desembarcar na estação Portuguesa-Tietê, basta pegar um ônibus sentido centro na Av. Cruzeiro do Sul — a estação Armênia é a próxima parada.",
   },
   {
     icon: Bus,
@@ -37,7 +38,7 @@ const directions = [
     icon: Car,
     title: "De Carro",
     description:
-      "Pela Marginal Tietê, acesse a Av. Cruzeiro do Sul e siga até a Rua Canindé. Pelo centro, siga pela Av. do Estado até a Rua Pedro Vicente e vire na Rua Canindé.",
+      "Pela Marginal Tietê, acesse a Av. Cruzeiro do Sul e siga até a Rua Canindé. Pelo centro, siga pela Av. do Estado até a Rua Pedro Vicente e vire na Rua Canindé. Dica: utilize nosso guia de localização para facilitar sua chegada.",
   },
   {
     icon: Plane,
@@ -48,14 +49,16 @@ const directions = [
 ];
 
 const nearby = [
-  { name: "Estação Armênia (Metrô)", distance: "900m", type: "Transporte" },
-  { name: "Shopping D", distance: "500m", type: "Comércio" },
-  { name: "Estádio do Canindé", distance: "600m", type: "Esporte" },
-  { name: "Museu Catavento", distance: "1.5km", type: "Cultura" },
-  { name: "Feira Kantuta", distance: "800m", type: "Cultura" },
   { name: "Feira da Madrugada", distance: "1.2km", type: "Comércio" },
   { name: "Rua 25 de Março", distance: "2km", type: "Comércio" },
   { name: "Mercado Municipal", distance: "2km", type: "Atração" },
+  { name: "Panelão da Polícia Militar", distance: "1.5km", type: "Gastronomia" },
+  { name: "Expo Center Norte", distance: "5km", type: "Eventos" },
+  { name: "Pavilhão de Exposições", distance: "5km", type: "Eventos" },
+  { name: "Estação Armênia (Metrô)", distance: "900m", type: "Transporte" },
+  { name: "Shopping D", distance: "500m", type: "Comércio" },
+  { name: "Museu Catavento", distance: "1.5km", type: "Cultura" },
+  { name: "Feira Kantuta", distance: "800m", type: "Cultura" },
   { name: "Pinacoteca", distance: "2.5km", type: "Cultura" },
 ];
 
@@ -71,7 +74,7 @@ export default function LocalizacaoPage() {
             Como Chegar
           </h1>
           <p className="text-[var(--color-text-light)] max-w-2xl mx-auto text-lg">
-            Localização privilegiada no bairro do Canindé, com fácil acesso ao
+            Localização privilegiada no bairro do Brás, com fácil acesso ao
             metrô e principais pontos de São Paulo.
           </p>
         </div>
@@ -157,6 +160,20 @@ export default function LocalizacaoPage() {
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Custom Commercial Map */}
+      <section className="py-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="font-serif text-3xl font-bold text-[var(--color-primary)] mb-4 text-center">
+            Mapa Comercial do Brás
+          </h2>
+          <p className="text-[var(--color-text-light)] text-center mb-8 max-w-2xl mx-auto">
+            Explore os principais shoppings, feiras e pontos comerciais da
+            região. Clique nos pontos para ver mais detalhes.
+          </p>
+          <BrasMap />
         </div>
       </section>
 

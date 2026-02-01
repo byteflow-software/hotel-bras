@@ -73,8 +73,7 @@ async function main() {
       entryMethod: null,
       commonAreas: [
         "Freezers com bebidas e congelados",
-        "Snacks à venda",
-        "Micro-ondas",
+        "Área Coffee Break",
         "Mesa de alimentação",
         "Hall de recepção com poltronas e puffs",
       ],

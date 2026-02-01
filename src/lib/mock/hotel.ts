@@ -3,9 +3,9 @@ import { HotelInfo, Service, Customer } from "@/types";
 export const hotelInfo: HotelInfo = {
   name: "Hotel Brás",
   description:
-    "Localizado no bairro do Canindé, em São Paulo, o Hotel Brás oferece duas unidades com opções para todos os perfis de hóspede. Com fácil acesso ao comércio local, estações de metrô e principais pontos da cidade, somos a escolha ideal para viajantes de negócios e turistas.",
+    "Localizado no bairro do Brás, em São Paulo, o Hotel Brás oferece duas unidades com opções para todos os perfis de hóspede. Com fácil acesso ao comércio local, estações de metrô e principais pontos da cidade, somos a escolha ideal para viajantes de negócios e turistas.",
   logo: "/logo.png",
-  address: "Rua Canindé, 469 - Canindé",
+  address: "Rua Canindé, 469 - Brás",
   city: "São Paulo",
   state: "SP",
   zipCode: "03033-000",
@@ -23,14 +23,14 @@ export const hotelInfo: HotelInfo = {
 export const unitAddresses = {
   autonoma: {
     name: "Hotel Brás - Unidade Autônoma",
-    address: "Rua Canindé, 469 - Canindé",
+    address: "Rua Canindé, 469 - Brás",
     city: "São Paulo",
     state: "SP",
     zipCode: "03033-000",
   },
   flat: {
     name: "Hotel Brás Flat",
-    address: "Rua Canindé, 445 - Canindé",
+    address: "Rua Canindé, 445 - Brás",
     city: "São Paulo",
     state: "SP",
     zipCode: "03033-000",

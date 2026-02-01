@@ -1,4 +1,5 @@
-import { Phone, MessageCircle } from "lucide-react";
+import Link from "next/link";
+import { Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { hotelInfo } from "@/lib/mock";
 
@@ -27,14 +28,10 @@ export function CTASection() {
             variant="outline"
             className="border-white text-white hover:bg-white hover:text-[var(--color-primary)]"
           >
-            <a
-              href={`https://wa.me/55${hotelInfo.whatsapp.replace(/\D/g, "")}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <MessageCircle className="w-5 h-5 mr-2" />
-              WhatsApp
-            </a>
+            <Link href="/contato">
+              <Mail className="w-5 h-5 mr-2" />
+              Fale Conosco
+            </Link>
           </Button>
           <Button
             asChild

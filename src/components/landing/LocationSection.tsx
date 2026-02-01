@@ -1,26 +1,27 @@
 import Link from "next/link";
-import { MapPin, Train, ShoppingBag, Building } from "lucide-react";
+import { MapPin, Train, ShoppingBag, Building, Store } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { hotelInfo, unitAddresses } from "@/lib/mock";
+import { BrasMap } from "./BrasMap";
 
 const nearbyPlaces = [
   {
-    icon: Train,
-    name: "Metrô Armênia",
-    distance: "900m",
-    description: "Linha 1 - Azul, 12 min a pé",
+    icon: Store,
+    name: "Feira da Madrugada",
+    distance: "1.2km",
+    description: "Maior centro de compras populares",
   },
   {
     icon: ShoppingBag,
-    name: "Shopping D",
-    distance: "500m",
-    description: "Av. Cruzeiro do Sul, 1100",
+    name: "Rua 25 de Março",
+    distance: "2km",
+    description: "Comércio popular de São Paulo",
   },
   {
     icon: Building,
-    name: "Museu Catavento",
-    distance: "1.5km",
-    description: "Ciência e tecnologia interativa",
+    name: "Mercado Municipal",
+    distance: "2km",
+    description: "Gastronomia e produtos típicos",
   },
 ];
 
@@ -29,18 +30,9 @@ export function LocationSection() {
     <section className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Map */}
-          <div className="relative h-[400px] rounded-2xl overflow-hidden shadow-lg animate-slide-in-left">
-            <iframe
-              src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=${encodeURIComponent(unitAddresses.autonoma.address + ", " + unitAddresses.autonoma.city + " - " + unitAddresses.autonoma.state)}&zoom=17`}
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Localização do Hotel Brás"
-            />
+          {/* Custom Map */}
+          <div className="animate-slide-in-left">
+            <BrasMap />
           </div>
 
           {/* Info */}
@@ -49,7 +41,7 @@ export function LocationSection() {
               Localização Privilegiada
             </h2>
             <p className="text-[var(--color-text-light)] mb-8">
-              No bairro do Canindé, com fácil acesso ao metrô, Shopping D e aos
+              No bairro do Brás, com fácil acesso ao metrô, Shopping D e aos
               principais pontos de interesse de São Paulo.
             </p>
 

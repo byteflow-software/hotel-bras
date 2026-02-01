@@ -11,6 +11,7 @@ import { hotelInfo } from "@/lib/mock";
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/acomodacoes", label: "Acomodações" },
+  { href: "/emprestimos", label: "Itens Disponíveis" },
   { href: "/localizacao", label: "Localização" },
   { href: "/contato", label: "Contato" },
 ];

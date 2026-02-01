@@ -60,6 +60,14 @@ export function Footer() {
               </li>
               <li>
                 <Link
+                  href="/emprestimos"
+                  className="text-white/80 hover:text-[var(--color-secondary)] transition-colors"
+                >
+                  Itens Disponiveis
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/localizacao"
                   className="text-white/80 hover:text-[var(--color-secondary)] transition-colors"
                 >

@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import {
   Phone,
-  MessageCircle,
   CalendarDays,
   Users,
   Baby,
@@ -50,17 +49,7 @@ export function Hero() {
   }
 
   function handleSearch() {
-    const childrenInfo =
-      children > 0
-        ? `\n- Crianças: ${children} (idades: ${childrenAges.map((a) => `${a} anos`).join(", ")})`
-        : "";
-
-    const msg = `Olá! Gostaria de verificar disponibilidade:\n- Check-in: ${formatDate(checkIn)}\n- Check-out: ${formatDate(checkOut)}\n- Adultos: ${adults}${childrenInfo}`;
-    const encoded = encodeURIComponent(msg);
-    window.open(
-      `https://wa.me/55${hotelInfo.whatsapp.replace(/\D/g, "")}?text=${encoded}`,
-      "_blank",
-    );
+    window.location.href = "/contato";
   }
 
   return (
@@ -78,7 +67,7 @@ export function Hero() {
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12 text-center">
         <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-10 animate-fade-in-delay">
-          Duas unidades no bairro do Canindé, em São Paulo. Conforto e
+          Duas unidades no bairro do Brás, em São Paulo. Conforto e
           praticidade para sua estadia perfeita.
         </p>
 
@@ -88,7 +77,7 @@ export function Hero() {
             {/* Card Header */}
             <div className="bg-[var(--color-primary)] px-4 py-3 md:px-6 md:py-4">
               <h2 className="text-white text-sm md:text-base font-medium text-center">
-                Consulte disponibilidade via WhatsApp
+                Consulte disponibilidade
               </h2>
             </div>
 
@@ -219,21 +208,6 @@ export function Hero() {
             variant="outline"
             className="border-white/60 text-white hover:bg-white hover:text-[var(--color-primary)]"
           >
-            <a
-              href={`https://wa.me/55${hotelInfo.whatsapp.replace(/\D/g, "")}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <MessageCircle className="w-5 h-5 mr-2" />
-              WhatsApp
-            </a>
-          </Button>
-          <Button
-            asChild
-            size="lg"
-            variant="outline"
-            className="border-white/60 text-white hover:bg-white hover:text-[var(--color-primary)]"
-          >
             <a href={`tel:+55${hotelInfo.phone.replace(/\D/g, "")}`}>
               <Phone className="w-5 h-5 mr-2" />
               {hotelInfo.phone}
@@ -249,7 +223,7 @@ export function Hero() {
           </div>
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-[var(--color-accent)]" />
-            Bairro do Canindé
+            Bairro do Brás
           </div>
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-[var(--color-accent)]" />

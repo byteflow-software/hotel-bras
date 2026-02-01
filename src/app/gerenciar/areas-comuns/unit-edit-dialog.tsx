@@ -31,7 +31,7 @@ const COMMON_AREA_SUGGESTIONS = [
   "Micro-ondas",
   "Mesa de alimentação",
   "Hall de recepção",
-  "Snacks à venda",
+  "Área Coffee Break",
   "Descartáveis disponíveis",
   "Poltronas e puffs",
   "Wi-Fi nas áreas comuns",

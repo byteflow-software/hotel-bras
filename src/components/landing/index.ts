@@ -6,3 +6,4 @@ export { FeaturedRooms } from "./FeaturedRooms";
 export { ServiceGrid } from "./ServiceGrid";
 export { LocationSection } from "./LocationSection";
 export { CTASection } from "./CTASection";
+export { BrasMap } from "./BrasMap";
