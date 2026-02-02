@@ -1,6 +1,6 @@
 "use server";
 
-import { prisma } from "@/lib/prisma";
+import { prisma, safePrismaOperation } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
 import { cookies } from "next/headers";
 
@@ -8,20 +8,27 @@ export async function loginAction(
   username: string,
   password: string
 ): Promise<{ success: boolean; error?: string }> {
-  let settings = await prisma.adminSettings.findUnique({
-    where: { id: "singleton" },
-  });
+  let settings = await safePrismaOperation(
+    () => prisma.adminSettings.findUnique({
+      where: { id: "singleton" },
+    }),
+    null
+  );
 
   // Fallback: create default credentials if none exist
   if (!settings) {
-    const hash = await bcrypt.hash("hotel2024", 10);
-    settings = await prisma.adminSettings.create({
-      data: {
-        id: "singleton",
-        username: "admin",
-        passwordHash: hash,
-      },
-    });
+    try {
+      const hash = await bcrypt.hash("hotel2024", 10);
+      settings = await prisma.adminSettings.create({
+        data: {
+          id: "singleton",
+          username: "admin",
+          passwordHash: hash,
+        },
+      });
+    } catch {
+      return { success: false, error: "Erro ao conectar com o banco de dados" };
+    }
   }
 
   if (settings.username !== username) {

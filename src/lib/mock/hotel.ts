@@ -4,7 +4,7 @@ export const hotelInfo: HotelInfo = {
   name: "Hotel Brás",
   description:
     "Localizado no bairro do Brás, em São Paulo, o Hotel Brás oferece duas unidades com opções para todos os perfis de hóspede. Com fácil acesso ao comércio local, estações de metrô e principais pontos da cidade, somos a escolha ideal para viajantes de negócios e turistas.",
-  logo: "/logo.png",
+  logo: "/icon.png",
   address: "Rua Canindé, 469 - Brás",
   city: "São Paulo",
   state: "SP",
@@ -46,8 +46,8 @@ export const services: Service[] = [
   },
   {
     id: "breakfast",
-    name: "Cafe da Manha",
-    description: "Cafe da manha completo das 06:30 as 10:00",
+    name: "Cafe da Manhã",
+    description: "Cafe da Manhã completo das 06:30 as 10:00",
     icon: "Coffee",
   },
   {
@@ -101,35 +101,35 @@ export const customers: Customer[] = [
 
 export const policies = {
   cancellation: `
-    <h3>Politica de Cancelamento</h3>
+    <h3>Política de Cancelamento</h3>
     <ul>
-      <li>Cancelamento gratuito ate 48 horas antes do check-in</li>
-      <li>Cancelamento entre 48h e 24h: cobranca de 50% do valor da primeira diaria</li>
-      <li>Cancelamento com menos de 24h ou no-show: cobranca integral da primeira diaria</li>
+      <li>Cancelamento gratuito até 48 horas antes do check-in</li>
+      <li>Cancelamento entre 48h e 24h: cobrança de 50% do valor da primeira diária</li>
+      <li>Cancelamento com menos de 24h ou no-show: cobrança integral da primeira diária</li>
     </ul>
   `,
   children: `
-    <h3>Politica de Criancas</h3>
+    <h3>Política de Crianças</h3>
     <ul>
-      <li>Criancas ate 6 anos: hospedagem gratuita na cama dos pais</li>
-      <li>Criancas de 7 a 12 anos: 50% do valor da diaria adicional</li>
+      <li>Crianças até 6 anos: hospedagem gratuita na cama dos pais</li>
+      <li>Crianças de 7 a 12 anos: 50% do valor da diária adicional</li>
       <li>Acima de 12 anos: valor integral</li>
-      <li>Bercos disponiveis mediante solicitacao previa (sujeito a disponibilidade)</li>
+      <li>Berços disponíveis mediante solicitação prévia (sujeito à disponibilidade)</li>
     </ul>
   `,
   pets: `
-    <h3>Politica de Pets</h3>
-    <p>Infelizmente, nao aceitamos animais de estimacao em nossas dependencias, exceto caes-guia para hospedes com deficiencia visual.</p>
+    <h3>Política de Pets</h3>
+    <p>Infelizmente, não aceitamos animais de estimação em nossas dependências, exceto cães-guia para hóspedes com deficiência visual.</p>
   `,
   general: `
     <h3>Regras Gerais</h3>
     <ul>
       <li>Check-in: a partir das 14:00</li>
-      <li>Check-out: ate as 12:00</li>
-      <li>Late check-out sujeito a disponibilidade e cobranca adicional</li>
-      <li>Proibido fumar em todas as areas internas do hotel</li>
-      <li>Silencio obrigatorio das 22:00 as 08:00</li>
-      <li>Documento de identificacao com foto obrigatorio no check-in</li>
+      <li>Check-out: até as 12:00</li>
+      <li>Late check-out sujeito à disponibilidade e cobrança adicional</li>
+      <li>Proibido fumar em todas as áreas internas do hotel</li>
+      <li>Silêncio obrigatório das 22:00 às 08:00</li>
+      <li>Documento de identificação com foto obrigatório no check-in</li>
     </ul>
   `,
 };

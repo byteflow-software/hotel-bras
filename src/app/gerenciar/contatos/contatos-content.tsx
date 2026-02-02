@@ -215,7 +215,7 @@ export function ContatosContent({ contacts }: ContatosContentProps) {
           </DialogHeader>
           {selectedContact && (
             <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-4 p-4 bg-[var(--color-light)] rounded-lg">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 bg-[var(--color-light)] rounded-lg">
                 <div>
                   <p className="text-xs text-[var(--color-text-light)] uppercase tracking-wide mb-1">
                     Nome
@@ -271,7 +271,7 @@ export function ContatosContent({ contacts }: ContatosContentProps) {
                 </div>
               </div>
 
-              <div className="flex justify-between pt-4 border-t border-[var(--border)]">
+              <div className="flex flex-col sm:flex-row justify-between gap-3 pt-4 border-t border-[var(--border)]">
                 <Button
                   variant="outline"
                   className="text-red-500 hover:text-red-600 hover:bg-red-50"
@@ -280,7 +280,7 @@ export function ContatosContent({ contacts }: ContatosContentProps) {
                   <Trash2 className="w-4 h-4 mr-2" />
                   Excluir
                 </Button>
-                <div className="flex gap-2">
+                <div className="flex flex-col sm:flex-row gap-2">
                   <Button variant="outline" asChild>
                     <a href={`mailto:${selectedContact.email}`}>
                       <Mail className="w-4 h-4 mr-2" />

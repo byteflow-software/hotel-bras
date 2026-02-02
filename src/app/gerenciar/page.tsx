@@ -1,8 +1,7 @@
 import {
   Bed,
   MessageSquare,
-  TrendingUp,
-  Phone,
+  CheckCircle,
 } from "lucide-react";
 import { AdminLayout } from "@/components/admin";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -21,6 +20,7 @@ export default async function AdminDashboard() {
 
   const totalContacts = allContacts.length;
   const totalRooms = rooms.length;
+  const readContacts = totalContacts - unreadContacts;
 
   const stats = [
     {
@@ -37,16 +37,10 @@ export default async function AdminDashboard() {
       color: "bg-purple-500",
     },
     {
-      title: "Taxa de Ocupação",
-      value: "72%",
-      icon: TrendingUp,
+      title: "Mensagens Visualizadas",
+      value: readContacts.toString(),
+      icon: CheckCircle,
       color: "bg-green-500",
-    },
-    {
-      title: "Atendimentos Hoje",
-      value: "8",
-      icon: Phone,
-      color: "bg-orange-500",
     },
   ];
 
@@ -64,7 +58,7 @@ export default async function AdminDashboard() {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           {stats.map((stat) => (
             <Card key={stat.title}>
               <CardContent className="p-6">

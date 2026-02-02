@@ -1,18 +1,48 @@
 "use server";
 
-import { prisma } from "@/lib/prisma";
+import { prisma, safePrismaOperation } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
 import { revalidatePath } from "next/cache";
 
 export async function getAdminSettings() {
-  const settings = await prisma.adminSettings.findUnique({
-    where: { id: "singleton" },
-  });
+  const settings = await safePrismaOperation(
+    () => prisma.adminSettings.findUnique({
+      where: { id: "singleton" },
+    }),
+    null
+  );
   if (!settings) return null;
   return {
     username: settings.username,
     recoveryEmail: settings.recoveryEmail,
+    logo: settings.logo,
   };
+}
+
+export async function getSiteLogo(): Promise<string> {
+  const settings = await safePrismaOperation(
+    () => prisma.adminSettings.findUnique({
+      where: { id: "singleton" },
+      select: { logo: true },
+    }),
+    null
+  );
+  return settings?.logo || "/icon.png";
+}
+
+export async function updateLogo(logoPath: string): Promise<{ success: boolean; error?: string }> {
+  try {
+    await prisma.adminSettings.update({
+      where: { id: "singleton" },
+      data: { logo: logoPath },
+    });
+    revalidatePath("/");
+    revalidatePath("/gerenciar");
+    revalidatePath("/gerenciar/configuracoes");
+    return { success: true };
+  } catch {
+    return { success: false, error: "Erro ao atualizar logo" };
+  }
 }
 
 export async function updateAdminSettings(data: {
@@ -21,9 +51,12 @@ export async function updateAdminSettings(data: {
   newPassword?: string;
   recoveryEmail?: string;
 }): Promise<{ success: boolean; error?: string }> {
-  const settings = await prisma.adminSettings.findUnique({
-    where: { id: "singleton" },
-  });
+  const settings = await safePrismaOperation(
+    () => prisma.adminSettings.findUnique({
+      where: { id: "singleton" },
+    }),
+    null
+  );
 
   if (!settings) {
     return { success: false, error: "Configuração não encontrada" };

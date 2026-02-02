@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { LogoProvider } from "@/contexts/LogoContext";
+import { getSiteLogo } from "@/app/gerenciar/configuracoes/actions";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://hotelbras.com.br";
 
@@ -73,11 +75,13 @@ export const metadata: Metadata = {
   category: "travel",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const logo = await getSiteLogo();
+
   return (
     <html lang="pt-BR">
       <head>
@@ -89,7 +93,9 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased">
-        {children}
+        <LogoProvider initialLogo={logo}>
+          {children}
+        </LogoProvider>
       </body>
     </html>
   );

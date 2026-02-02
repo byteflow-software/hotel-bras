@@ -17,6 +17,7 @@ async function main() {
   // Clean existing data
   await prisma.roomType.deleteMany();
   await prisma.unit.deleteMany();
+  await prisma.loanItem.deleteMany();
 
   // Seed admin credentials
   const passwordHash = await bcrypt.hash("hotel2024", 10);
@@ -300,12 +301,63 @@ async function main() {
     ],
   });
 
+  // === ITENS PARA EMPRÉSTIMO ===
+  await prisma.loanItem.createMany({
+    data: [
+      {
+        name: "Ferro de Passar",
+        description: "Ferro a vapor para suas roupas",
+        icon: "Flame",
+        displayOrder: 1,
+        isActive: true,
+      },
+      {
+        name: "Prancha de Cabelo",
+        description: "Prancha alisadora profissional",
+        icon: "Zap",
+        displayOrder: 2,
+        isActive: true,
+      },
+      {
+        name: "Balança",
+        description: "Balança de bagagem para pesar suas malas",
+        icon: "Scale",
+        displayOrder: 3,
+        isActive: true,
+      },
+      {
+        name: "Tesoura",
+        description: "Tesoura para uso geral",
+        icon: "Scissors",
+        displayOrder: 4,
+        isActive: true,
+      },
+      {
+        name: "Secador de Cabelo",
+        description: "Secador de cabelo com duas velocidades",
+        icon: "Wind",
+        displayOrder: 5,
+        isActive: true,
+      },
+      {
+        name: "Tábua de Passar",
+        description: "Tábua de passar dobrável",
+        icon: "Shirt",
+        displayOrder: 6,
+        isActive: true,
+      },
+    ],
+  });
+
   console.log("Seed completed successfully!");
   console.log(`Created unit: ${autonoma.name} (${autonoma.id})`);
   console.log(`Created unit: ${flat.name} (${flat.id})`);
 
   const roomCount = await prisma.roomType.count();
   console.log(`Created ${roomCount} room types total.`);
+
+  const loanItemCount = await prisma.loanItem.count();
+  console.log(`Created ${loanItemCount} loan items total.`);
 }
 
 main()

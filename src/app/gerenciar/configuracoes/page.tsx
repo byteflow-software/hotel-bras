@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { Save, Upload, Shield, Eye, EyeOff, Loader2 } from "lucide-react";
+import { Save, Upload, Shield, Eye, EyeOff, Loader2, Check } from "lucide-react";
 import { AdminLayout } from "@/components/admin";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -10,9 +10,25 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { hotelInfo } from "@/lib/mock";
-import { getAdminSettings, updateAdminSettings } from "./actions";
+import { getAdminSettings, updateAdminSettings, updateLogo } from "./actions";
+import { useLogo } from "@/contexts/LogoContext";
+
+const availableLogos = [
+  { path: "/icon.png", label: "Logo Principal (Ícone)" },
+  { path: "/logo.png", label: "Logo Completa" },
+  { path: "/logo-hotel.jpeg", label: "Logo Hotel" },
+  { path: "/logo-letra-escura.png", label: "Logo Letra Escura" },
+];
 
 export default function AdminConfiguracoesPage() {
+  const { logo: currentLogo } = useLogo();
+  const [selectedLogo, setSelectedLogo] = useState(currentLogo);
+  const [logoSaving, setLogoSaving] = useState(false);
+  const [logoMessage, setLogoMessage] = useState<{
+    type: "success" | "error";
+    text: string;
+  } | null>(null);
+
   const [config, setConfig] = useState({
     name: hotelInfo.name,
     description: hotelInfo.description,
@@ -53,9 +69,37 @@ export default function AdminConfiguracoesPage() {
           recoveryEmail: settings.recoveryEmail ?? "",
           newUsername: settings.username,
         }));
+        if (settings.logo) {
+          setSelectedLogo(settings.logo);
+        }
       }
     });
   }, []);
+
+  useEffect(() => {
+    setSelectedLogo(currentLogo);
+  }, [currentLogo]);
+
+  async function handleLogoSave() {
+    setLogoMessage(null);
+    setLogoSaving(true);
+
+    const result = await updateLogo(selectedLogo);
+
+    if (result.success) {
+      setLogoMessage({
+        type: "success",
+        text: "Logo atualizada com sucesso! Recarregue a página para ver as alterações.",
+      });
+    } else {
+      setLogoMessage({
+        type: "error",
+        text: result.error || "Erro ao atualizar logo",
+      });
+    }
+
+    setLogoSaving(false);
+  }
 
   const handleSave = () => {
     alert("Configurações salvas com sucesso! (mock)");
@@ -142,26 +186,92 @@ export default function AdminConfiguracoesPage() {
           <CardHeader>
             <CardTitle>Logo do Hotel</CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="space-y-6">
+            {logoMessage && (
+              <div
+                className={`p-3 rounded-lg text-sm ${
+                  logoMessage.type === "success"
+                    ? "bg-green-50 border border-green-200 text-green-600"
+                    : "bg-red-50 border border-red-200 text-red-600"
+                }`}
+              >
+                {logoMessage.text}
+              </div>
+            )}
+
             <div className="flex items-center gap-6">
-              <div className="relative w-24 h-24 rounded-lg overflow-hidden bg-[var(--color-light)]">
+              <div className="relative w-24 h-24 rounded-lg overflow-hidden bg-[var(--color-light)] border border-[var(--border)]">
                 <Image
-                  src="/logo.png"
-                  alt="Logo"
+                  src={selectedLogo}
+                  alt="Logo Atual"
                   fill
-                  className="object-cover"
+                  className="object-contain p-2"
                 />
               </div>
               <div>
-                <Button variant="outline">
-                  <Upload className="w-4 h-4 mr-2" />
-                  Alterar Logo
-                </Button>
-                <p className="text-sm text-[var(--color-text-light)] mt-2">
-                  Recomendado: 200x200px, formato JPG ou PNG
+                <p className="font-medium text-[var(--color-primary)]">Logo Atual</p>
+                <p className="text-sm text-[var(--color-text-light)]">
+                  {selectedLogo}
                 </p>
               </div>
             </div>
+
+            <div>
+              <Label className="mb-3 block">Selecione uma logo</Label>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {availableLogos.map((logoOption) => (
+                  <button
+                    key={logoOption.path}
+                    type="button"
+                    onClick={() => setSelectedLogo(logoOption.path)}
+                    className={`relative p-4 rounded-lg border-2 transition-all ${
+                      selectedLogo === logoOption.path
+                        ? "border-[var(--color-accent)] bg-[var(--color-light)]"
+                        : "border-[var(--border)] hover:border-[var(--color-neutral)]"
+                    }`}
+                  >
+                    {selectedLogo === logoOption.path && (
+                      <div className="absolute top-2 right-2 w-5 h-5 bg-[var(--color-accent)] rounded-full flex items-center justify-center">
+                        <Check className="w-3 h-3 text-white" />
+                      </div>
+                    )}
+                    <div className="relative w-16 h-16 mx-auto mb-2">
+                      <Image
+                        src={logoOption.path}
+                        alt={logoOption.label}
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                    <p className="text-xs text-center text-[var(--color-text-light)]">
+                      {logoOption.label}
+                    </p>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="customLogo">Ou insira um caminho personalizado</Label>
+              <Input
+                id="customLogo"
+                value={selectedLogo}
+                onChange={(e) => setSelectedLogo(e.target.value)}
+                placeholder="/icon.png"
+              />
+              <p className="text-xs text-[var(--color-text-light)]">
+                O arquivo deve estar na pasta public do projeto
+              </p>
+            </div>
+
+            <Button onClick={handleLogoSave} disabled={logoSaving || selectedLogo === currentLogo}>
+              {logoSaving ? (
+                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+              ) : (
+                <Upload className="w-4 h-4 mr-2" />
+              )}
+              {logoSaving ? "Salvando..." : "Salvar Logo"}
+            </Button>
           </CardContent>
         </Card>
 

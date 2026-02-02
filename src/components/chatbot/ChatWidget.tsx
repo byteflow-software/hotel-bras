@@ -30,9 +30,13 @@ interface ChatOption {
 const initialMessage: Message = {
   id: "welcome",
   type: "bot",
-  content: "Ola! Bem-vindo ao Hotel Bras. Como posso ajudar voce hoje?",
+  content: "Ola! Bem-vindo ao Hotel Brás. Como posso ajudar voce hoje?",
   options: [
-    { label: "Horarios", value: "horarios", icon: <Clock className="w-4 h-4" /> },
+    {
+      label: "Horarios",
+      value: "horarios",
+      icon: <Clock className="w-4 h-4" />,
+    },
     {
       label: "Pagamentos",
       value: "pagamentos",
@@ -55,14 +59,18 @@ const responses: Record<string, Message> = {
   horarios: {
     id: "horarios",
     type: "bot",
-    content: `Nossos horarios:\n\n- Check-in: a partir das ${hotelInfo.checkInTime}\n- Check-out: ate as ${hotelInfo.checkOutTime}\n- Cafe da manha: 06:30 as 10:00\n- Recepcao: 24 horas\n\nPosso ajudar com mais alguma coisa?`,
+    content: `Nossos horarios:\n\n- Check-in: a partir das ${hotelInfo.checkInTime}\n- Check-out: ate as ${hotelInfo.checkOutTime}\n- Cafe da Manhã: 06:30 as 10:00\n- Recepcao: 24 horas\n\nPosso ajudar com mais alguma coisa?`,
     options: [
       {
         label: "Falar com atendente",
         value: "atendente",
         icon: <Phone className="w-4 h-4" />,
       },
-      { label: "Outras duvidas", value: "menu", icon: <ArrowRight className="w-4 h-4" /> },
+      {
+        label: "Outras duvidas",
+        value: "menu",
+        icon: <ArrowRight className="w-4 h-4" />,
+      },
     ],
   },
   pagamentos: {
@@ -76,13 +84,17 @@ const responses: Record<string, Message> = {
         value: "atendente",
         icon: <Phone className="w-4 h-4" />,
       },
-      { label: "Outras duvidas", value: "menu", icon: <ArrowRight className="w-4 h-4" /> },
+      {
+        label: "Outras duvidas",
+        value: "menu",
+        icon: <ArrowRight className="w-4 h-4" />,
+      },
     ],
   },
   localizacao: {
     id: "localizacao",
     type: "bot",
-    content: `Estamos localizados no coracao do Bras:\n\n${hotelInfo.address}\n${hotelInfo.city} - ${hotelInfo.state}\nCEP: ${hotelInfo.zipCode}\n\nFicamos a 300m da estacao de metro Bras (Linha Vermelha).`,
+    content: `Estamos localizados no coracao do Brás:\n\n${hotelInfo.address}\n${hotelInfo.city} - ${hotelInfo.state}\nCEP: ${hotelInfo.zipCode}\n\nFicamos a 300m da estacao de metro Brás (Linha Vermelha).`,
     options: [
       {
         label: "Ver no mapa",
@@ -119,7 +131,11 @@ const responses: Record<string, Message> = {
     type: "bot",
     content: "Claro! Sobre o que voce gostaria de saber?",
     options: [
-      { label: "Horarios", value: "horarios", icon: <Clock className="w-4 h-4" /> },
+      {
+        label: "Horarios",
+        value: "horarios",
+        icon: <Clock className="w-4 h-4" />,
+      },
       {
         label: "Pagamentos",
         value: "pagamentos",
@@ -147,7 +163,11 @@ const responses: Record<string, Message> = {
         value: "whatsapp",
         icon: <MessageCircle className="w-4 h-4" />,
       },
-      { label: "Voltar ao menu", value: "menu", icon: <ArrowRight className="w-4 h-4" /> },
+      {
+        label: "Voltar ao menu",
+        value: "menu",
+        icon: <ArrowRight className="w-4 h-4" />,
+      },
     ],
   },
 };
@@ -169,7 +189,7 @@ export function ChatWidget() {
     if (value === "whatsapp") {
       window.open(
         `https://wa.me/55${hotelInfo.whatsapp.replace(/\D/g, "")}`,
-        "_blank"
+        "_blank",
       );
       return;
     }
@@ -199,7 +219,7 @@ export function ChatWidget() {
           "fixed bottom-6 right-6 z-50 p-4 rounded-full shadow-lg transition-all duration-300",
           isOpen
             ? "bg-[var(--color-text)] text-white"
-            : "bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-hover)]"
+            : "bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-hover)]",
         )}
         aria-label={isOpen ? "Fechar chat" : "Abrir chat"}
       >
@@ -216,7 +236,7 @@ export function ChatWidget() {
           "fixed bottom-24 right-6 z-50 w-[360px] max-w-[calc(100vw-3rem)] bg-white rounded-2xl shadow-2xl overflow-hidden transition-all duration-300 transform",
           isOpen
             ? "opacity-100 translate-y-0 scale-100"
-            : "opacity-0 translate-y-4 scale-95 pointer-events-none"
+            : "opacity-0 translate-y-4 scale-95 pointer-events-none",
         )}
       >
         {/* Header */}
@@ -226,7 +246,7 @@ export function ChatWidget() {
               <MessageCircle className="w-5 h-5 text-[var(--color-primary)]" />
             </div>
             <div>
-              <h3 className="font-semibold">Hotel Bras</h3>
+              <h3 className="font-semibold">Hotel Brás</h3>
               <p className="text-sm text-white/80">Assistente Virtual</p>
             </div>
           </div>
@@ -241,7 +261,7 @@ export function ChatWidget() {
                   "max-w-[85%] p-3 rounded-2xl text-sm whitespace-pre-line",
                   message.type === "bot"
                     ? "bg-[var(--color-light)] text-[var(--color-text)]"
-                    : "bg-[var(--color-accent)] text-white ml-auto"
+                    : "bg-[var(--color-accent)] text-white ml-auto",
                 )}
               >
                 {message.content}

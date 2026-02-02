@@ -9,9 +9,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { loginAction } from "./actions";
+import { useLogo } from "@/contexts/LogoContext";
 
 export default function LoginPage() {
   const router = useRouter();
+  const { logo } = useLogo();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -39,11 +41,12 @@ export default function LoginPage() {
         <CardHeader className="text-center pb-2">
           <div className="flex justify-center mb-4">
             <Image
-              src="/logo.png"
+              src={logo}
               alt="Hotel Brás"
               width={80}
               height={80}
               className="rounded-xl"
+              style={{ width: "auto", height: "auto" }}
             />
           </div>
           <h1 className="font-serif text-2xl font-bold text-[var(--color-primary)]">

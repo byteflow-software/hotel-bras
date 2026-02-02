@@ -1,6 +1,19 @@
 import { PrismaClient } from "@/generated/prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
 
+// Safe wrapper for Prisma operations that handles connection issues
+export async function safePrismaOperation<T>(
+  operation: () => Promise<T>,
+  fallback: T
+): Promise<T> {
+  try {
+    return await operation();
+  } catch (error) {
+    console.error("Prisma operation failed:", error);
+    return fallback;
+  }
+}
+
 function getDirectDbUrl(): string {
   const url = process.env.DATABASE_URL ?? "";
   if (!url) return "";

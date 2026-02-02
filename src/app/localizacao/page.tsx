@@ -1,7 +1,7 @@
-import { MapPin, Train, Bus, Car, Plane } from "lucide-react";
+import { MapPin, Train, Bus, Car, Plane, ShoppingBag, Store, Building2, Church } from "lucide-react";
 import { Header, Footer } from "@/components/landing";
-import { BrasMap } from "@/components/landing/BrasMap";
-import { hotelInfo, unitAddresses } from "@/lib/mock";
+import { GoogleMapBras } from "@/components/landing/GoogleMapBras";
+import { unitAddresses } from "@/lib/mock";
 
 export const metadata = {
   title: "Localização | Hotel Brás",
@@ -16,8 +16,8 @@ const units = [
   },
   {
     ...unitAddresses.flat,
-    lat: -23.52490,
-    lng: -46.61950,
+    lat: -23.5249,
+    lng: -46.6195,
   },
 ];
 
@@ -44,22 +44,79 @@ const directions = [
     icon: Plane,
     title: "Do Aeroporto",
     description:
-      "De Guarulhos (GRU): cerca de 25 km, 35 min via Marginal Tietê. De Congonhas (CGH): cerca de 12 km, 25 min via Av. do Estado.",
+      "De Guarulhos (GRU): você pode pegar o Metrô Linha 13-Jade que sai do aeroporto, fazer baldeação na estação Sé (Linha 1-Azul) e descer na estação Armênia, a 12 min a pé do hotel. De carro, são cerca de 25 km, 35 min via Marginal Tietê. De Congonhas (CGH): cerca de 12 km, 25 min via Av. do Estado.",
   },
 ];
 
-const nearby = [
-  { name: "Feira da Madrugada", distance: "1.2km", type: "Comércio" },
-  { name: "Rua 25 de Março", distance: "2km", type: "Comércio" },
-  { name: "Mercado Municipal", distance: "2km", type: "Atração" },
-  { name: "Panelão da Polícia Militar", distance: "1.5km", type: "Gastronomia" },
-  { name: "Expo Center Norte", distance: "5km", type: "Eventos" },
-  { name: "Pavilhão de Exposições", distance: "5km", type: "Eventos" },
-  { name: "Estação Armênia (Metrô)", distance: "900m", type: "Transporte" },
-  { name: "Shopping D", distance: "500m", type: "Comércio" },
-  { name: "Museu Catavento", distance: "1.5km", type: "Cultura" },
-  { name: "Feira Kantuta", distance: "800m", type: "Cultura" },
-  { name: "Pinacoteca", distance: "2.5km", type: "Cultura" },
+const nearbyCategories = [
+  {
+    title: "Feiras",
+    icon: Store,
+    color: "text-purple-600",
+    bgColor: "bg-purple-100",
+    items: [
+      { name: "Feira da Madrugada", distance: "300m" },
+      { name: "Feirinha da Concórdia", distance: "1.2km" },
+      { name: "Feira Kantuta", distance: "800m" },
+    ],
+  },
+  {
+    title: "Shoppings e Galerias",
+    icon: ShoppingBag,
+    color: "text-red-600",
+    bgColor: "bg-red-100",
+    items: [
+      { name: "Shopping Vautier", distance: "400m" },
+      { name: "Shopping Vautier Premium", distance: "450m" },
+      { name: "Galeria Pagé Brás", distance: "350m" },
+      { name: "Shopping Canindé", distance: "300m" },
+      { name: "Shopping Tupan", distance: "400m" },
+      { name: "Shopping Azulão", distance: "250m" },
+      { name: "Shopping Carnot", distance: "300m" },
+      { name: "Shop Elev Brás", distance: "400m" },
+      { name: "Shopping Tiers", distance: "450m" },
+      { name: "Shopping Porto", distance: "350m" },
+      { name: "Shopping New Bancas", distance: "400m" },
+      { name: "Shopping Brasmix", distance: "500m" },
+      { name: "Shopping K", distance: "900m" },
+      { name: "Shopping 25 de Março", distance: "1.8km" },
+    ],
+  },
+  {
+    title: "Transporte",
+    icon: Train,
+    color: "text-green-600",
+    bgColor: "bg-green-100",
+    items: [
+      { name: "Estação Armênia (Metrô L1)", distance: "900m" },
+      { name: "Estação Brás (Metrô L3)", distance: "1.5km" },
+      { name: "Terminal Tietê", distance: "3km" },
+    ],
+  },
+  {
+    title: "Pontos de Interesse",
+    icon: Building2,
+    color: "text-blue-600",
+    bgColor: "bg-blue-100",
+    items: [
+      { name: "Hospital N. Sra. do Pari", distance: "200m" },
+      { name: "Mercado Municipal", distance: "2km" },
+      { name: "Museu Catavento", distance: "1.5km" },
+      { name: "Pinacoteca", distance: "2.5km" },
+      { name: "Expo Center Norte", distance: "5km" },
+    ],
+  },
+  {
+    title: "Cultura e Religião",
+    icon: Church,
+    color: "text-amber-600",
+    bgColor: "bg-amber-100",
+    items: [
+      { name: "Paróquia Sto. Antônio do Pari", distance: "300m" },
+      { name: "Buraco Quente", distance: "700m" },
+      { name: "Memorial da Imigração", distance: "1.5km" },
+    ],
+  },
 ];
 
 export default function LocalizacaoPage() {
@@ -80,62 +137,46 @@ export default function LocalizacaoPage() {
         </div>
       </section>
 
-      {/* Units with Maps */}
+      {/* Google Map with Pins */}
       <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-          {units.map((unit, index) => (
-            <div
-              key={unit.name}
-              className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-start ${
-                index % 2 === 1 ? "lg:flex-row-reverse" : ""
-              }`}
-            >
-              {/* Map */}
-              <div className={`relative h-[400px] rounded-2xl overflow-hidden shadow-lg ${index % 2 === 1 ? "lg:order-2" : ""}`}>
-                <iframe
-                  src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=${encodeURIComponent(unit.address + ", " + unit.city + " - " + unit.state)}&zoom=17`}
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title={`Localização - ${unit.name}`}
-                />
-              </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+          <GoogleMapBras />
 
-              {/* Address */}
-              <div className={index % 2 === 1 ? "lg:order-1" : ""}>
-                <div className="bg-[var(--color-light)] rounded-2xl p-8">
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 bg-[var(--color-secondary)] rounded-xl">
-                      <MapPin className="w-6 h-6 text-[var(--color-primary)]" />
-                    </div>
-                    <div>
-                      <h2 className="font-serif text-2xl font-bold text-[var(--color-primary)] mb-2">
-                        {unit.name}
-                      </h2>
-                      <p className="text-[var(--color-text)]">
-                        {unit.address}
-                        <br />
-                        {unit.city} - {unit.state}
-                        <br />
-                        CEP: {unit.zipCode}
-                      </p>
-                      <a
-                        href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(unit.address + ", " + unit.city + " " + unit.state)}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-block mt-4 text-[var(--color-accent)] font-medium hover:underline"
-                      >
-                        Abrir no Google Maps →
-                      </a>
-                    </div>
+          {/* Unit Address Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {units.map((unit) => (
+              <div
+                key={unit.name}
+                className="bg-[var(--color-light)] rounded-2xl p-8"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="p-3 bg-[var(--color-secondary)] rounded-xl">
+                    <MapPin className="w-6 h-6 text-[var(--color-primary)]" />
+                  </div>
+                  <div>
+                    <h2 className="font-serif text-2xl font-bold text-[var(--color-primary)] mb-2">
+                      {unit.name}
+                    </h2>
+                    <p className="text-[var(--color-text)]">
+                      {unit.address}
+                      <br />
+                      {unit.city} - {unit.state}
+                      <br />
+                      CEP: {unit.zipCode}
+                    </p>
+                    <a
+                      href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(unit.address + ", " + unit.city + " " + unit.state)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block mt-4 text-[var(--color-accent)] font-medium hover:underline"
+                    >
+                      Abrir no Google Maps →
+                    </a>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
 
           {/* Directions */}
           <div>
@@ -163,43 +204,42 @@ export default function LocalizacaoPage() {
         </div>
       </section>
 
-      {/* Custom Commercial Map */}
-      <section className="py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-serif text-3xl font-bold text-[var(--color-primary)] mb-4 text-center">
-            Mapa Comercial do Brás
-          </h2>
-          <p className="text-[var(--color-text-light)] text-center mb-8 max-w-2xl mx-auto">
-            Explore os principais shoppings, feiras e pontos comerciais da
-            região. Clique nos pontos para ver mais detalhes.
-          </p>
-          <BrasMap />
-        </div>
-      </section>
-
       {/* Nearby Places */}
       <section className="py-16 bg-[var(--color-light)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-serif text-3xl font-bold text-[var(--color-primary)] mb-8 text-center">
-            Pontos de Interesse Proximos
+          <h2 className="font-serif text-3xl font-bold text-[var(--color-primary)] mb-4 text-center">
+            Pontos de Interesse Próximos
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {nearby.map((place) => (
-              <div
-                key={place.name}
-                className="bg-white rounded-xl p-4 flex justify-between items-center"
-              >
-                <div>
-                  <h4 className="font-medium text-[var(--color-primary)]">
-                    {place.name}
-                  </h4>
-                  <span className="text-xs text-[var(--color-text-light)]">
-                    {place.type}
-                  </span>
+          <p className="text-center text-[var(--color-text-light)] mb-10 max-w-2xl mx-auto">
+            O Brás é um dos maiores polos de comércio popular do Brasil. Confira o que você encontra por perto.
+          </p>
+
+          <div className="space-y-8">
+            {nearbyCategories.map((category) => (
+              <div key={category.title}>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className={`p-2 ${category.bgColor} rounded-lg`}>
+                    <category.icon className={`w-5 h-5 ${category.color}`} />
+                  </div>
+                  <h3 className="font-serif text-xl font-bold text-[var(--color-primary)]">
+                    {category.title}
+                  </h3>
                 </div>
-                <span className="text-[var(--color-accent)] font-medium">
-                  {place.distance}
-                </span>
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+                  {category.items.map((place) => (
+                    <div
+                      key={place.name}
+                      className="bg-white rounded-xl p-4 flex flex-col hover:shadow-md transition-shadow"
+                    >
+                      <h4 className="font-medium text-sm text-[var(--color-primary)] mb-1">
+                        {place.name}
+                      </h4>
+                      <span className="text-xs font-medium text-[var(--color-accent)] mt-auto">
+                        {place.distance}
+                      </span>
+                    </div>
+                  ))}
+                </div>
               </div>
             ))}
           </div>

@@ -20,7 +20,7 @@ export function AdminLayout({ children }: AdminLayoutProps) {
     <div className="min-h-screen bg-[var(--color-lighter)]">
       <AdminSidebar onLogout={handleLogout} />
       <main className="lg:ml-64 min-h-screen">
-        <div className="p-4 lg:p-8">{children}</div>
+        <div className="p-4 pt-20 lg:pt-8 lg:p-8">{children}</div>
       </main>
     </div>
   );

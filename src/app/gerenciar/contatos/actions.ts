@@ -1,18 +1,24 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { prisma } from "@/lib/prisma";
+import { prisma, safePrismaOperation } from "@/lib/prisma";
 
 export async function getContacts() {
-  return prisma.contact.findMany({
-    orderBy: { createdAt: "desc" },
-  });
+  return safePrismaOperation(
+    () => prisma.contact.findMany({
+      orderBy: { createdAt: "desc" },
+    }),
+    []
+  );
 }
 
 export async function getUnreadContactsCount() {
-  return prisma.contact.count({
-    where: { isRead: false },
-  });
+  return safePrismaOperation(
+    () => prisma.contact.count({
+      where: { isRead: false },
+    }),
+    0
+  );
 }
 
 export async function markContactAsRead(id: string) {

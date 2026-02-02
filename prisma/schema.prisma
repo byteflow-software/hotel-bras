@@ -61,6 +61,18 @@ model AdminSettings {
   username      String   @default("admin")
   passwordHash  String
   recoveryEmail String?
+  logo          String   @default("/icon.png")
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
+}
+
+model LoanItem {
+  id          String   @id @default(cuid())
+  name        String
+  description String   @db.Text
+  icon        String   // Lucide icon name
+  isActive    Boolean  @default(true)
+  displayOrder Int     @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }

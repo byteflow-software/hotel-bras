@@ -1,9 +1,14 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { Phone, Mail, MapPin, Clock, Instagram, Facebook } from "lucide-react";
 import { hotelInfo, unitAddresses } from "@/lib/mock";
+import { useLogo } from "@/contexts/LogoContext";
 
 export function Footer() {
+  const { logo } = useLogo();
+
   return (
     <footer className="bg-[var(--color-primary)] text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -12,30 +17,35 @@ export function Footer() {
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center gap-3 mb-6">
               <Image
-                src="/logo.png"
-                alt="Hotel Bras"
+                src={logo}
+                alt="Hotel Brás"
                 width={60}
                 height={60}
                 className="rounded-lg"
+                style={{ width: "auto", height: "auto" }}
               />
               <span className="font-serif text-2xl font-bold text-[var(--color-secondary)]">
-                Hotel Bras
+                Hotel Brás
               </span>
             </Link>
             <p className="text-white/80 text-sm leading-relaxed">
-              Conforto e elegancia no coracao do Bras. Sua hospedagem em Sao Paulo
-              com localizacao privilegiada e atendimento de qualidade.
+              Conforto e elegância no coração do Brás. Sua hospedagem em São
+              Paulo com localização privilegiada e atendimento de qualidade.
             </p>
             <div className="flex gap-4 mt-6">
               <a
-                href="#"
+                href="https://www.instagram.com/hotel_bras/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="p-2 bg-white/10 rounded-full hover:bg-[var(--color-accent)] transition-colors"
                 aria-label="Instagram"
               >
                 <Instagram className="w-5 h-5" />
               </a>
               <a
-                href="#"
+                href="https://www.facebook.com/hotel.bras/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="p-2 bg-white/10 rounded-full hover:bg-[var(--color-accent)] transition-colors"
                 aria-label="Facebook"
               >
@@ -64,6 +74,14 @@ export function Footer() {
                   className="text-white/80 hover:text-[var(--color-secondary)] transition-colors"
                 >
                   Itens Disponiveis
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/translado"
+                  className="text-white/80 hover:text-[var(--color-secondary)] transition-colors"
+                >
+                  Translado
                 </Link>
               </li>
               <li>
@@ -144,7 +162,9 @@ export function Footer() {
                     {unitAddresses.flat.address}
                   </p>
                   <p>
-                    {unitAddresses.autonoma.city} - {unitAddresses.autonoma.state} | CEP: {unitAddresses.autonoma.zipCode}
+                    {unitAddresses.autonoma.city} -{" "}
+                    {unitAddresses.autonoma.state} | CEP:{" "}
+                    {unitAddresses.autonoma.zipCode}
                   </p>
                 </div>
               </li>
@@ -169,7 +189,8 @@ export function Footer() {
               <li className="flex items-center gap-3">
                 <Clock className="w-5 h-5 text-[var(--color-secondary)]" />
                 <span className="text-white/80 text-sm">
-                  Check-in: {hotelInfo.checkInTime} | Check-out: {hotelInfo.checkOutTime}
+                  Check-in: {hotelInfo.checkInTime} | Check-out:{" "}
+                  {hotelInfo.checkOutTime}
                 </span>
               </li>
             </ul>
@@ -180,7 +201,8 @@ export function Footer() {
         <div className="mt-12 pt-8 border-t border-white/20">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-white/60 text-sm">
-              © {new Date().getFullYear()} Hotel Bras. Todos os direitos reservados.
+              © {new Date().getFullYear()} Hotel Brás. Todos os direitos
+              reservados.
             </p>
             <p className="text-white/60 text-sm">
               Desenvolvido com carinho para sua melhor experiencia

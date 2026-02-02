@@ -2,8 +2,9 @@ import { Header, Footer } from "@/components/landing";
 import { policies, hotelInfo } from "@/lib/mock";
 
 export const metadata = {
-  title: "Politicas e Termos | Hotel Bras",
-  description: "Politicas de cancelamento, privacidade e termos de uso do Hotel Bras.",
+  title: "Políticas e Termos | Hotel Brás",
+  description:
+    "Políticas de cancelamento, privacidade e termos de uso do Hotel Brás.",
 };
 
 export default function PoliticasPage() {
@@ -15,10 +16,10 @@ export default function PoliticasPage() {
       <section className="pt-32 pb-16 bg-[var(--color-light)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="font-serif text-4xl md:text-5xl font-bold text-[var(--color-primary)] mb-4">
-            Politicas e Termos
+            Políticas e Termos
           </h1>
           <p className="text-[var(--color-text-light)] max-w-2xl mx-auto text-lg">
-            Informacoes importantes sobre sua estadia no Hotel Bras.
+            Informações importantes sobre sua estadia no Hotel Brás.
           </p>
         </div>
       </section>
@@ -43,7 +44,7 @@ export default function PoliticasPage() {
                   href="#criancas"
                   className="text-[var(--color-accent)] hover:underline"
                 >
-                  Criancas
+                  Crianças
                 </a>
               </li>
               <li className="text-[var(--color-neutral)]">|</li>
@@ -122,38 +123,40 @@ export default function PoliticasPage() {
             {/* Privacy Policy */}
             <section id="privacidade" className="scroll-mt-32">
               <h3 className="font-serif text-2xl font-bold text-[var(--color-primary)] mb-4">
-                Politica de Privacidade (LGPD)
+                Política de Privacidade (LGPD)
               </h3>
               <div className="prose prose-lg max-w-none text-[var(--color-text-light)]">
                 <p>
-                  O Hotel Bras esta comprometido com a protecao dos dados pessoais de seus
-                  hospedes e visitantes, em conformidade com a Lei Geral de Protecao de
-                  Dados (Lei n° 13.709/2018).
+                  O Hotel Brás está comprometido com a proteção dos dados
+                  pessoais de seus hóspedes e visitantes, em conformidade com a
+                  Lei Geral de Proteção de Dados (Lei nº 13.709/2018).
                 </p>
                 <h4>Dados Coletados</h4>
                 <p>
-                  Coletamos apenas os dados necessarios para a prestacao de nossos servicos:
+                  Coletamos apenas os dados necessários para a prestação de
+                  nossos serviços:
                 </p>
                 <ul>
                   <li>Nome completo</li>
                   <li>E-mail</li>
                   <li>Telefone</li>
-                  <li>Documento de identificacao (CPF ou passaporte)</li>
+                  <li>Documento de identificação (CPF ou passaporte)</li>
                   <li>Dados de pagamento (processados pelo gateway Asaas)</li>
                 </ul>
                 <h4>Finalidade</h4>
-                <p>Seus dados sao utilizados exclusivamente para:</p>
+                <p>Seus dados são utilizados exclusivamente para:</p>
                 <ul>
                   <li>Processamento de reservas</li>
-                  <li>Comunicacao sobre sua estadia</li>
-                  <li>Cumprimento de obrigacoes legais</li>
-                  <li>Envio de promocoes (apenas com seu consentimento)</li>
+                  <li>Comunicação sobre sua estadia</li>
+                  <li>Cumprimento de obrigações legais</li>
+                  <li>Envio de promoções (apenas com seu consentimento)</li>
                 </ul>
                 <h4>Seus Direitos</h4>
                 <p>
-                  Voce tem direito a acessar, corrigir, excluir ou solicitar a
-                  portabilidade de seus dados pessoais. Para exercer esses direitos,
-                  entre em contato conosco pelo e-mail {hotelInfo.email}.
+                  Você tem direito a acessar, corrigir, excluir ou solicitar a
+                  portabilidade de seus dados pessoais. Para exercer esses
+                  direitos, entre em contato conosco pelo e-mail{" "}
+                  {hotelInfo.email}.
                 </p>
               </div>
             </section>
@@ -165,44 +168,46 @@ export default function PoliticasPage() {
               </h3>
               <div className="prose prose-lg max-w-none text-[var(--color-text-light)]">
                 <p>
-                  Ao utilizar nosso site e servicos de reserva, voce concorda com os
-                  seguintes termos:
+                  Ao utilizar nosso site e serviços de reserva, você concorda
+                  com os seguintes termos:
                 </p>
                 <h4>Reservas Online</h4>
                 <ul>
                   <li>
-                    As reservas estao sujeitas a disponibilidade e confirmacao de
-                    pagamento.
+                    As reservas estão sujeitas à disponibilidade e confirmação
+                    de pagamento.
                   </li>
                   <li>
-                    Os precos exibidos incluem todas as taxas, exceto quando indicado.
+                    Os preços exibidos incluem todas as taxas, exceto quando
+                    indicado.
                   </li>
                   <li>
-                    O hospede deve apresentar documento de identificacao valido no
-                    check-in.
+                    O hóspede deve apresentar documento de identificação válido
+                    no check-in.
                   </li>
                 </ul>
                 <h4>Responsabilidades</h4>
                 <ul>
                   <li>
-                    O hotel nao se responsabiliza por objetos de valor nao depositados
-                    no cofre.
+                    O hotel não se responsabiliza por objetos de valor não
+                    depositados no cofre.
                   </li>
                   <li>
-                    Danos causados as instalacoes serao cobrados conforme avaliacao.
+                    Danos causados às instalações serão cobrados conforme
+                    avaliação.
                   </li>
                   <li>
-                    O hotel reserva-se o direito de recusar hospedes que nao cumpram
-                    as regras.
+                    O hotel reserva-se o direito de recusar hóspedes que não
+                    cumpram as regras.
                   </li>
                 </ul>
-                <h4>Alteracoes</h4>
+                <h4>Alterações</h4>
                 <p>
-                  Estes termos podem ser atualizados periodicamente. Recomendamos a
-                  consulta regular desta pagina.
+                  Estes termos podem ser atualizados periodicamente.
+                  Recomendamos a consulta regular desta página.
                 </p>
                 <p className="text-sm text-[var(--color-neutral)] mt-8">
-                  Ultima atualizacao: Janeiro de 2026
+                  Última atualização: Janeiro de 2026
                 </p>
               </div>
             </section>

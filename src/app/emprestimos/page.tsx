@@ -1,5 +1,7 @@
 import { Header, Footer } from "@/components/landing";
 import { Clock, AlertCircle } from "lucide-react";
+import { getActiveLoanItems } from "@/app/gerenciar/itens-disponiveis/actions";
+import { DynamicIcon } from "@/components/ui/dynamic-icon";
 
 export const metadata = {
   title: "Itens Disponíveis | Hotel Brás",
@@ -7,40 +9,11 @@ export const metadata = {
     "Confira os itens disponíveis para empréstimo aos hóspedes do Hotel Brás. Ferro de passar, prancha de cabelo, balança e mais.",
 };
 
-const loanItems = [
-  {
-    name: "Ferro de Passar",
-    description: "Ferro a vapor para suas roupas",
-    icon: "🔥",
-  },
-  {
-    name: "Prancha de Cabelo",
-    description: "Prancha alisadora profissional",
-    icon: "💇",
-  },
-  {
-    name: "Balança",
-    description: "Balança de bagagem para pesar suas malas",
-    icon: "⚖️",
-  },
-  {
-    name: "Tesoura",
-    description: "Tesoura para uso geral",
-    icon: "✂️",
-  },
-  {
-    name: "Secador de Cabelo",
-    description: "Secador de cabelo com duas velocidades",
-    icon: "💨",
-  },
-  {
-    name: "Tábua de Passar",
-    description: "Tábua de passar dobrável",
-    icon: "🧺",
-  },
-];
+export const dynamic = "force-dynamic";
 
-export default function EmprestimosPage() {
+export default async function EmprestimosPage() {
+  const loanItems = await getActiveLoanItems();
+
   return (
     <main className="min-h-screen">
       <Header />
@@ -77,26 +50,39 @@ export default function EmprestimosPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {loanItems.map((item) => (
-              <div
-                key={item.name}
-                className="bg-white rounded-xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-[var(--border)]"
-              >
-                <div className="text-4xl mb-4">{item.icon}</div>
-                <h3 className="font-semibold text-[var(--color-primary)] text-lg mb-2">
-                  {item.name}
-                </h3>
-                <p className="text-sm text-[var(--color-text-light)]">
-                  {item.description}
-                </p>
-                <div className="mt-4 flex items-center gap-2 text-xs text-[var(--color-accent)]">
-                  <Clock className="w-3.5 h-3.5" />
-                  <span>Empréstimo por tempo determinado</span>
+          {loanItems.length === 0 ? (
+            <div className="text-center py-12">
+              <p className="text-[var(--color-text-light)]">
+                Nenhum item disponível no momento.
+              </p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {loanItems.map((item) => (
+                <div
+                  key={item.id}
+                  className="bg-white rounded-xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-[var(--border)]"
+                >
+                  <div className="w-12 h-12 bg-[var(--color-secondary-light)] rounded-xl flex items-center justify-center mb-4">
+                    <DynamicIcon
+                      name={item.icon}
+                      className="w-6 h-6 text-[var(--color-primary)]"
+                    />
+                  </div>
+                  <h3 className="font-semibold text-[var(--color-primary)] text-lg mb-2">
+                    {item.name}
+                  </h3>
+                  <p className="text-sm text-[var(--color-text-light)]">
+                    {item.description}
+                  </p>
+                  <div className="mt-4 flex items-center gap-2 text-xs text-[var(--color-accent)]">
+                    <Clock className="w-3.5 h-3.5" />
+                    <span>Empréstimo por tempo determinado</span>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
