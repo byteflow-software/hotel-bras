@@ -57,7 +57,7 @@ export function Footer() {
           {/* Quick Links */}
           <div>
             <h3 className="font-serif text-lg font-semibold mb-6 text-[var(--color-secondary)]">
-              Links Rapidos
+              Links Rápidos
             </h3>
             <ul className="space-y-3">
               <li>
@@ -65,7 +65,7 @@ export function Footer() {
                   href="/acomodacoes"
                   className="text-white/80 hover:text-[var(--color-secondary)] transition-colors"
                 >
-                  Acomodacoes
+                  Acomodações
                 </Link>
               </li>
               <li>
@@ -73,7 +73,7 @@ export function Footer() {
                   href="/emprestimos"
                   className="text-white/80 hover:text-[var(--color-secondary)] transition-colors"
                 >
-                  Itens Disponiveis
+                  Itens Disponíveis
                 </Link>
               </li>
               <li>
@@ -89,7 +89,7 @@ export function Footer() {
                   href="/localizacao"
                   className="text-white/80 hover:text-[var(--color-secondary)] transition-colors"
                 >
-                  Localizacao
+                  Localização
                 </Link>
               </li>
               <li>
@@ -106,7 +106,7 @@ export function Footer() {
           {/* Policies */}
           <div>
             <h3 className="font-serif text-lg font-semibold mb-6 text-[var(--color-secondary)]">
-              Politicas
+              Políticas
             </h3>
             <ul className="space-y-3">
               <li>
@@ -205,7 +205,7 @@ export function Footer() {
               reservados.
             </p>
             <p className="text-white/60 text-sm">
-              Desenvolvido com carinho para sua melhor experiencia
+              Desenvolvido com carinho para sua melhor experiência
             </p>
           </div>
         </div>
