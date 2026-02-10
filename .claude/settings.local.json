@@ -34,7 +34,8 @@
       "Bash(git config:*)",
       "Bash(git rm:*)",
       "Bash(pnpm install)",
-      "Bash(pnpm build:*)"
+      "Bash(pnpm build:*)",
+      "WebFetch(domain:omnibees.gitbook.io)"
     ]
   }
 }

@@ -7,6 +7,7 @@ import {
   Users,
   Baby,
   Search,
+  BedDouble,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { hotelInfo } from "@/lib/mock";
@@ -14,6 +15,7 @@ import { hotelInfo } from "@/lib/mock";
 export function Hero() {
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
+  const [rooms, setRooms] = useState(1);
   const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(0);
   const [childrenAges, setChildrenAges] = useState<number[]>([]);
@@ -48,8 +50,32 @@ export function Hero() {
     return `${day}/${month}/${year}`;
   }
 
+  function formatDateForOmnibees(dateStr: string): string {
+    const [year, month, day] = dateStr.split("-");
+    return `${day}${month}${year}`;
+  }
+
+  function buildOmnibeesUrl(): string {
+    const baseUrl = "https://book.omnibees.com/hotel/23276";
+    const params = new URLSearchParams();
+
+    if (checkIn) params.append("CheckIn", formatDateForOmnibees(checkIn));
+    if (checkOut) params.append("CheckOut", formatDateForOmnibees(checkOut));
+    params.append("NRooms", rooms.toString());
+    params.append("ad", adults.toString());
+
+    if (children > 0) {
+      params.append("ch", children.toString());
+      if (childrenAges.length > 0) {
+        params.append("ag", childrenAges.join(";"));
+      }
+    }
+
+    return `${baseUrl}?${params.toString()}`;
+  }
+
   function handleSearch() {
-    window.location.href = "/contato";
+    window.open(buildOmnibeesUrl(), "_blank");
   }
 
   return (
@@ -114,7 +140,24 @@ export function Hero() {
               </div>
 
               {/* Guests Row */}
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-3 gap-3">
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-[var(--color-text)] flex items-center gap-1.5">
+                    <BedDouble className="w-3.5 h-3.5 text-[var(--color-accent)]" />
+                    Quartos
+                  </label>
+                  <select
+                    value={rooms}
+                    onChange={(e) => setRooms(Number(e.target.value))}
+                    className="w-full rounded-xl border-2 border-[var(--border)] bg-[var(--color-lighter)] px-3 py-3 text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent transition-all"
+                  >
+                    {[1, 2, 3, 4].map((n) => (
+                      <option key={n} value={n}>
+                        {n} {n === 1 ? "quarto" : "quartos"}
+                      </option>
+                    ))}
+                  </select>
+                </div>
                 <div className="space-y-1.5">
                   <label className="text-xs font-semibold text-[var(--color-text)] flex items-center gap-1.5">
                     <Users className="w-3.5 h-3.5 text-[var(--color-accent)]" />
