@@ -55,9 +55,9 @@ export const metadata: Metadata = {
     siteName: "Hotel Brás",
     images: [
       {
-        url: "/logo.png",
-        width: 800,
-        height: 600,
+        url: "/logo-hotel.jpeg",
+        width: 1200,
+        height: 630,
         alt: "Hotel Brás - Hospedagem em São Paulo",
       },
     ],
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     title: "Hotel Brás - Hospedagem em São Paulo",
     description:
       "Hospedagem confortável no Brás, São Paulo. Reserve agora!",
-    images: ["/logo.png"],
+    images: ["/logo-hotel.jpeg"],
   },
   alternates: {
     canonical: siteUrl,
