@@ -35,7 +35,8 @@
       "Bash(git rm:*)",
       "Bash(pnpm install)",
       "Bash(pnpm build:*)",
-      "WebFetch(domain:omnibees.gitbook.io)"
+      "WebFetch(domain:omnibees.gitbook.io)",
+      "WebFetch(domain:www.hotelbras.com.br)"
     ]
   }
 }

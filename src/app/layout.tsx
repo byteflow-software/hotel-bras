@@ -3,7 +3,7 @@ import "./globals.css";
 import { LogoProvider } from "@/contexts/LogoContext";
 import { getSiteLogo } from "@/app/gerenciar/configuracoes/actions";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://hotelbras.com.br";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.hotelbras.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
