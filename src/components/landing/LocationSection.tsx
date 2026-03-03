@@ -124,8 +124,8 @@ const pointsOfInterest = {
     color: "text-green-600",
     bgColor: "bg-green-100",
     items: [
-      { name: "Estação Armênia", detail: "Metrô Linha 1 Azul", distance: "900m" },
-      { name: "Estação Brás", detail: "Metrô Linha 3 Vermelha", distance: "1.5km" },
+      { name: "Estação Armênia", detail: "Metrô Linha 1 Azul", distance: "700m" },
+      { name: "Estação Brás", detail: "Metrô Linha 3 Vermelha", distance: "1km" },
     ],
   },
   feiras: {
@@ -134,8 +134,8 @@ const pointsOfInterest = {
     color: "text-purple-600",
     bgColor: "bg-purple-100",
     items: [
-      { name: "Feira da Madrugada", detail: "Maior centro de compras populares", distance: "300m" },
-      { name: "Feirinha da Concórdia", detail: "Artigos diversos", distance: "1.2km" },
+      { name: "Feira da Madrugada", detail: "Maior centro de compras populares", distance: "150m" },
+      { name: "Feirinha da Concórdia", detail: "Artigos diversos", distance: "1km" },
     ],
   },
   shoppings: {
@@ -144,8 +144,8 @@ const pointsOfInterest = {
     color: "text-red-600",
     bgColor: "bg-red-100",
     items: [
-      { name: "Shopping Vautier", detail: "Moda atacado e varejo", distance: "400m" },
-      { name: "Galeria Pagé Brás", detail: "Comércio popular", distance: "350m" },
+      { name: "Shopping Vautier", detail: "Moda atacado e varejo", distance: "150m" },
+      { name: "Galeria Pagé Brás", detail: "Comércio popular", distance: "280m" },
       { name: "Shopping 25 de Março", detail: "Centro de compras", distance: "1.8km" },
     ],
   },

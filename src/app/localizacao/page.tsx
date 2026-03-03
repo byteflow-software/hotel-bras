@@ -55,8 +55,8 @@ const nearbyCategories = [
     color: "text-purple-600",
     bgColor: "bg-purple-100",
     items: [
-      { name: "Feira da Madrugada", distance: "300m" },
-      { name: "Feirinha da Concórdia", distance: "1.2km" },
+      { name: "Feira da Madrugada", distance: "150m" },
+      { name: "Feirinha da Concórdia", distance: "1km" },
       { name: "Feira Kantuta", distance: "800m" },
     ],
   },
@@ -66,9 +66,9 @@ const nearbyCategories = [
     color: "text-red-600",
     bgColor: "bg-red-100",
     items: [
-      { name: "Shopping Vautier", distance: "400m" },
+      { name: "Shopping Vautier", distance: "150m" },
       { name: "Shopping Vautier Premium", distance: "450m" },
-      { name: "Galeria Pagé Brás", distance: "350m" },
+      { name: "Galeria Pagé Brás", distance: "280m" },
       { name: "Shopping Canindé", distance: "300m" },
       { name: "Shopping Tupan", distance: "400m" },
       { name: "Shopping Azulão", distance: "250m" },
@@ -88,8 +88,8 @@ const nearbyCategories = [
     color: "text-green-600",
     bgColor: "bg-green-100",
     items: [
-      { name: "Estação Armênia (Metrô L1)", distance: "900m" },
-      { name: "Estação Brás (Metrô L3)", distance: "1.5km" },
+      { name: "Estação Armênia (Metrô L1)", distance: "700m" },
+      { name: "Estação Brás (Metrô L3)", distance: "1km" },
       { name: "Terminal Tietê", distance: "3km" },
     ],
   },
