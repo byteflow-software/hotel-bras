@@ -29,7 +29,7 @@ export const unitAddresses = {
     zipCode: "03033-000",
   },
   flat: {
-    name: "Hotel Brás Flat",
+    name: "Hotel Brás - Unidade semi automatizada",
     address: "Rua Canindé, 445 - Brás",
     city: "São Paulo",
     state: "SP",
