@@ -26,7 +26,7 @@ const categoryConfig: Record<
 const gMapPoints: GMapPoint[] = [
   // Hotel
   { id: "hotel-autonoma", name: "Hotel Brás - Unidade Autônoma", address: "Rua Canindé, 469 - Brás", lat: -23.53034373754878, lng: -46.623192753650684, category: "hotel" },
-  { id: "hotel-flat", name: "Hotel Brás - Unidade Flat", address: "Rua Canindé, 445 - Brás", lat: -23.530530051858115, lng: -46.623254482505395, category: "hotel" },
+  { id: "hotel-flat", name: "Hotel Brás - Unidade Semi Automatizada", address: "Rua Canindé, 445 - Brás", lat: -23.530530051858115, lng: -46.623254482505395, category: "hotel" },
 
   // Shoppings e Galerias
   { id: "shop-elev", name: "Shop Elev Brás", address: "Nº 558", lat: -23.530415001593187, lng: -46.61978390243767, category: "shopping", link: "https://maps.app.goo.gl/7LkKHMaW13DayJnc6" },

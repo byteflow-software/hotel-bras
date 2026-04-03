@@ -158,7 +158,7 @@ export function Footer() {
                     {unitAddresses.autonoma.address}
                   </p>
                   <p>
-                    <strong className="text-white/90">Flat:</strong>{" "}
+                    <strong className="text-white/90">Semi Automatizada:</strong>{" "}
                     {unitAddresses.flat.address}
                   </p>
                   <p>
