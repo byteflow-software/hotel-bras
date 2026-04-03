@@ -62,7 +62,7 @@ export function RoomCreateDialog({
   const [amenities, setAmenities] = useState<string[]>([]);
   const [newAmenity, setNewAmenity] = useState("");
   const [saving, setSaving] = useState(false);
-  const [uploading, setUploading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState<{ current: number; total: number } | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   function resetForm() {
@@ -111,18 +111,21 @@ export function RoomCreateDialog({
   }
 
   async function handleUpload(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    setUploading(true);
-    try {
-      const formData = new FormData();
-      formData.append("file", file);
-      const path = await uploadRoomPhoto(formData);
-      setPhotos((prev) => [...prev, path]);
-    } catch {
-      alert("Erro ao enviar foto");
+    const files = Array.from(e.target.files ?? []);
+    if (files.length === 0) return;
+    setUploadProgress({ current: 0, total: files.length });
+    for (let i = 0; i < files.length; i++) {
+      try {
+        const formData = new FormData();
+        formData.append("file", files[i]);
+        const path = await uploadRoomPhoto(formData);
+        setPhotos((prev) => [...prev, path]);
+      } catch {
+        alert(`Erro ao enviar foto ${files[i].name}`);
+      }
+      setUploadProgress({ current: i + 1, total: files.length });
     }
-    setUploading(false);
+    setUploadProgress(null);
     if (fileInputRef.current) fileInputRef.current.value = "";
   }
 
@@ -348,6 +351,7 @@ export function RoomCreateDialog({
                 ref={fileInputRef}
                 type="file"
                 accept="image/*"
+                multiple
                 className="hidden"
                 onChange={handleUpload}
               />
@@ -355,14 +359,16 @@ export function RoomCreateDialog({
                 type="button"
                 variant="outline"
                 onClick={() => fileInputRef.current?.click()}
-                disabled={uploading}
+                disabled={uploadProgress !== null}
               >
-                {uploading ? (
+                {uploadProgress !== null ? (
                   <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                 ) : (
                   <Upload className="w-4 h-4 mr-2" />
                 )}
-                {uploading ? "Enviando..." : "Adicionar foto"}
+                {uploadProgress !== null
+                  ? `Enviando ${uploadProgress.current}/${uploadProgress.total}...`
+                  : "Adicionar fotos"}
               </Button>
             </div>
           </TabsContent>
