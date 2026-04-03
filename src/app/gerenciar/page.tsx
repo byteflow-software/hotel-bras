@@ -137,7 +137,7 @@ export default async function AdminDashboard() {
               <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
                 <p className="font-semibold text-blue-800">2 Unidades</p>
                 <p className="text-sm text-blue-700">
-                  Autônoma e Flat operacionais
+                  Autônoma e Semi Automatizada operacionais
                 </p>
               </div>
 
