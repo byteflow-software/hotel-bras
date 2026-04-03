@@ -2,8 +2,7 @@
 
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
-import { writeFile, mkdir } from "fs/promises";
-import { join } from "path";
+import { put } from "@vercel/blob";
 
 export async function updateUnit(
   id: string,
@@ -44,21 +43,14 @@ export async function uploadCommonAreaPhoto(formData: FormData) {
   const file = formData.get("file") as File;
   if (!file) throw new Error("Nenhum arquivo enviado");
 
-  const bytes = await file.arrayBuffer();
-  const buffer = Buffer.from(bytes);
-
-  const uploadsDir = join(process.cwd(), "public", "rooms", "uploads");
-  await mkdir(uploadsDir, { recursive: true });
-
   const timestamp = Date.now();
   const safeName = file.name
     .toLowerCase()
     .replace(/[^a-z0-9.]+/g, "-")
     .replace(/(^-|-$)/g, "");
-  const filename = `${timestamp}-${safeName}`;
-  const filepath = join(uploadsDir, filename);
+  const filename = `rooms/uploads/${timestamp}-${safeName}`;
 
-  await writeFile(filepath, buffer);
+  const blob = await put(filename, file, { access: "public" });
 
-  return `/rooms/uploads/${filename}`;
+  return blob.url;
 }
