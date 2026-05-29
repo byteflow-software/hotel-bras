@@ -1,10 +1,25 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import { Lato, Raleway } from "next/font/google";
 import "./globals.css";
 import { LogoProvider } from "@/contexts/LogoContext";
 import { getSiteLogo } from "@/app/gerenciar/configuracoes/actions";
 
 const GOOGLE_TAG_ID = "G-GKH867J8Y4";
+
+const lato = Lato({
+  subsets: ["latin"],
+  weight: ["400", "700", "900"],
+  display: "swap",
+  variable: "--font-lato",
+});
+
+const raleway = Raleway({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-raleway",
+});
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://hotelbras.com";
 
@@ -86,14 +101,8 @@ export default async function RootLayout({
   const logo = await getSiteLogo();
 
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" className={`${lato.variable} ${raleway.variable}`}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Raleway:wght@400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -175,9 +184,9 @@ export default async function RootLayout({
       <body className="antialiased">
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_TAG_ID}`}
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="google-tag" strategy="afterInteractive">
+        <Script id="google-tag" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}

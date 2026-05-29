@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import {
   Phone,
   CalendarDays,
@@ -81,12 +82,16 @@ export function Hero() {
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center">
       {/* Background Image - Area Comum */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: "url('/rooms/area-comum-autonomo/IMG_8625.jpg')",
-        }}
-      >
+      <div className="absolute inset-0">
+        <Image
+          src="/rooms/area-comum-autonomo/IMG_8625.jpg"
+          alt="Área comum do Hotel Brás no bairro do Brás, São Paulo"
+          fill
+          priority
+          fetchPriority="high"
+          sizes="100vw"
+          className="object-cover object-center"
+        />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60" />
       </div>
 
@@ -115,12 +120,14 @@ export function Hero() {
               {/* Dates Row */}
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-[var(--color-text)] flex items-center gap-1.5">
+                  <label htmlFor="hero-checkin" className="text-xs font-semibold text-[var(--color-text)] flex items-center gap-1.5">
                     <CalendarDays className="w-3.5 h-3.5 text-[var(--color-accent)]" />
                     Check-in
                   </label>
                   <input
+                    id="hero-checkin"
                     type="date"
+                    aria-label="Data de check-in"
                     value={checkIn}
                     onChange={(e) => setCheckIn(e.target.value)}
                     min={today}
@@ -128,12 +135,14 @@ export function Hero() {
                   />
                 </div>
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-[var(--color-text)] flex items-center gap-1.5">
+                  <label htmlFor="hero-checkout" className="text-xs font-semibold text-[var(--color-text)] flex items-center gap-1.5">
                     <CalendarDays className="w-3.5 h-3.5 text-[var(--color-accent)]" />
                     Check-out
                   </label>
                   <input
+                    id="hero-checkout"
                     type="date"
+                    aria-label="Data de check-out"
                     value={checkOut}
                     onChange={(e) => setCheckOut(e.target.value)}
                     min={checkIn || today}
@@ -145,11 +154,13 @@ export function Hero() {
               {/* Guests Row */}
               <div className="grid grid-cols-3 gap-3">
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-[var(--color-text)] flex items-center gap-1.5">
+                  <label htmlFor="hero-rooms" className="text-xs font-semibold text-[var(--color-text)] flex items-center gap-1.5">
                     <BedDouble className="w-3.5 h-3.5 text-[var(--color-accent)]" />
                     Quartos
                   </label>
                   <select
+                    id="hero-rooms"
+                    aria-label="Quantidade de quartos"
                     value={rooms}
                     onChange={(e) => setRooms(Number(e.target.value))}
                     className="w-full rounded-xl border-2 border-[var(--border)] bg-[var(--color-lighter)] px-3 py-3 text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent transition-all"
@@ -162,11 +173,13 @@ export function Hero() {
                   </select>
                 </div>
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-[var(--color-text)] flex items-center gap-1.5">
+                  <label htmlFor="hero-adults" className="text-xs font-semibold text-[var(--color-text)] flex items-center gap-1.5">
                     <Users className="w-3.5 h-3.5 text-[var(--color-accent)]" />
                     Adultos
                   </label>
                   <select
+                    id="hero-adults"
+                    aria-label="Quantidade de adultos"
                     value={adults}
                     onChange={(e) => setAdults(Number(e.target.value))}
                     className="w-full rounded-xl border-2 border-[var(--border)] bg-[var(--color-lighter)] px-3 py-3 text-sm text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent transition-all"
@@ -179,11 +192,13 @@ export function Hero() {
                   </select>
                 </div>
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-[var(--color-text)] flex items-center gap-1.5">
+                  <label htmlFor="hero-children" className="text-xs font-semibold text-[var(--color-text)] flex items-center gap-1.5">
                     <Baby className="w-3.5 h-3.5 text-[var(--color-accent)]" />
                     Crianças
                   </label>
                   <select
+                    id="hero-children"
+                    aria-label="Quantidade de crianças"
                     value={children}
                     onChange={(e) =>
                       handleChildrenChange(Number(e.target.value))
@@ -215,6 +230,7 @@ export function Hero() {
                           {index + 1}:
                         </span>
                         <select
+                          aria-label={`Idade da criança ${index + 1}`}
                           value={age}
                           onChange={(e) =>
                             handleChildAgeChange(index, Number(e.target.value))

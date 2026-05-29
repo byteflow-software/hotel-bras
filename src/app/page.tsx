@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import {
   Header,
   Footer,
@@ -9,9 +10,13 @@ import {
   CTASection,
 } from "@/components/landing";
 import { SeoContent } from "@/components/landing/SeoContent";
-import { ChatWidget } from "@/components/chatbot";
 
-export const dynamic = "force-dynamic";
+const ChatWidget = dynamic(
+  () => import("@/components/chatbot").then((m) => m.ChatWidget),
+  { ssr: false },
+);
+
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: { absolute: "Hotel Brás | Hospedagem no Brás, São Paulo — WiFi e Café da Manhã" },

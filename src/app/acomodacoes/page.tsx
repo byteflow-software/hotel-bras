@@ -9,7 +9,7 @@ import { StructuredData, breadcrumbSchema } from "@/components/seo/StructuredDat
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://hotelbras.com";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
 
 export const metadata = {
   title: { absolute: "Acomodações e Quartos | Hotel Brás — Brás, São Paulo" },
