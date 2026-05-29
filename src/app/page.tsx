@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import dynamic from "next/dynamic";
 import {
   Header,
   Footer,
@@ -10,11 +9,7 @@ import {
   CTASection,
 } from "@/components/landing";
 import { SeoContent } from "@/components/landing/SeoContent";
-
-const ChatWidget = dynamic(
-  () => import("@/components/chatbot").then((m) => m.ChatWidget),
-  { ssr: false },
-);
+import { ChatWidgetLazy } from "@/components/chatbot/ChatWidgetLazy";
 
 export const revalidate = 3600;
 
@@ -43,7 +38,7 @@ export default function HomePage() {
       <SeoContent />
       <CTASection />
       <Footer />
-      <ChatWidget />
+      <ChatWidgetLazy />
     </main>
   );
 }
