@@ -4,9 +4,10 @@ import { getActiveLoanItems } from "@/app/gerenciar/itens-disponiveis/actions";
 import { DynamicIcon } from "@/components/ui/dynamic-icon";
 
 export const metadata = {
-  title: "Itens Disponíveis | Hotel Brás",
+  title: "Itens para Empréstimo | Hotel Brás",
   description:
-    "Confira os itens disponíveis para empréstimo aos hóspedes do Hotel Brás. Ferro de passar, prancha de cabelo, balança e mais.",
+    "Itens disponíveis para empréstimo no Hotel Brás: ferro de passar, secador, balança e mais. Solicite na recepção 24h.",
+  alternates: { canonical: "/emprestimos" },
 };
 
 export const dynamic = "force-dynamic";

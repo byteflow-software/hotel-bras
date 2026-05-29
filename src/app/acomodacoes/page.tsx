@@ -9,9 +9,16 @@ import { getUnitsWithRoomTypes } from "@/lib/data/rooms";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Acomodações | Hotel Brás",
+  title: { absolute: "Acomodações e Quartos | Hotel Brás — Brás, São Paulo" },
   description:
-    "Conheça nossos quartos e acomodações. Duas unidades com opções para todos os perfis de hóspede.",
+    "Quartos do Hotel Brás: opções de casal, solteiro e quartos autônomos. Duas unidades no bairro do Brás, São Paulo, com ar-condicionado, WiFi grátis e café da manhã.",
+  alternates: { canonical: "/acomodacoes" },
+  openGraph: {
+    title: "Acomodações | Hotel Brás",
+    description: "Conheça os quartos do Hotel Brás. Duas unidades no Brás, São Paulo.",
+    url: "/acomodacoes",
+    type: "website",
+  },
 };
 
 export default async function AcomodacoesPage() {

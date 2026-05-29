@@ -4,8 +4,10 @@ import { GoogleMapBras } from "@/components/landing/GoogleMapBras";
 import { unitAddresses } from "@/lib/mock";
 
 export const metadata = {
-  title: "Localização | Hotel Brás",
-  description: "Saiba como chegar ao Hotel Brás no bairro do Brás, São Paulo.",
+  title: { absolute: "Localização | Hotel Brás — Rua Canindé, Brás, São Paulo" },
+  description:
+    "Como chegar ao Hotel Brás. Rua Canindé, 469 - Brás, São Paulo. Próximo ao metrô Brás, Estação da Luz, 25 de Março e principais pontos comerciais.",
+  alternates: { canonical: "/localizacao" },
 };
 
 const units = [

@@ -7,9 +7,10 @@ import { Button } from "@/components/ui/button";
 import { hotelInfo } from "@/lib/mock";
 
 export const metadata = {
-  title: "Translado | Hotel Brás",
+  title: { absolute: "Translado e Transfer | Hotel Brás — Guarulhos, Congonhas e Tietê" },
   description:
-    "Serviço de translado exclusivo do Hotel Brás. Transporte do aeroporto de Guarulhos, Congonhas e Rodoviária Tietê com conforto e segurança.",
+    "Translado do aeroporto para o Hotel Brás: Guarulhos (GRU) a partir de R$ 120, Congonhas (CGH) e Rodoviária Tietê. Reserve seu transfer com conforto e segurança.",
+  alternates: { canonical: "/translado" },
 };
 
 const destinations = [

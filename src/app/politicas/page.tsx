@@ -4,7 +4,8 @@ import { policies, hotelInfo } from "@/lib/mock";
 export const metadata = {
   title: "Políticas e Termos | Hotel Brás",
   description:
-    "Políticas de cancelamento, privacidade e termos de uso do Hotel Brás.",
+    "Política de cancelamento, regras de check-in/check-out, política de crianças e pets do Hotel Brás, São Paulo.",
+  alternates: { canonical: "/politicas" },
 };
 
 export default function PoliticasPage() {
