@@ -6,7 +6,7 @@ import { getSiteLogo } from "@/app/gerenciar/configuracoes/actions";
 
 const GOOGLE_TAG_ID = "G-GKH867J8Y4";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.hotelbras.com";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://hotelbras.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
