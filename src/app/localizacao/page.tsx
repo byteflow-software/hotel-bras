@@ -2,6 +2,7 @@ import { MapPin, Train, Bus, Car, Plane, ShoppingBag, Store, Building2, Church }
 import { Header, Footer } from "@/components/landing";
 import { GoogleMapBras } from "@/components/landing/GoogleMapBras";
 import { unitAddresses } from "@/lib/mock";
+import { StructuredData, breadcrumbSchema } from "@/components/seo/StructuredData";
 
 export const metadata = {
   title: { absolute: "Localização | Hotel Brás — Rua Canindé, Brás, São Paulo" },
@@ -124,6 +125,12 @@ const nearbyCategories = [
 export default function LocalizacaoPage() {
   return (
     <main className="min-h-screen">
+      <StructuredData
+        data={breadcrumbSchema([
+          { name: "Início", path: "/" },
+          { name: "Localização", path: "/localizacao" },
+        ])}
+      />
       <Header />
 
       {/* Hero */}

@@ -8,6 +8,7 @@ import {
   LocationSection,
   CTASection,
 } from "@/components/landing";
+import { SeoContent } from "@/components/landing/SeoContent";
 import { ChatWidget } from "@/components/chatbot";
 
 export const dynamic = "force-dynamic";
@@ -34,6 +35,7 @@ export default function HomePage() {
       <FeaturedRooms />
       <ServiceGrid />
       <LocationSection />
+      <SeoContent />
       <CTASection />
       <Footer />
       <ChatWidget />

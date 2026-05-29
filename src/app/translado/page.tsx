@@ -5,6 +5,7 @@ import { Footer } from "@/components/landing/Footer";
 import { TransferCarSvg } from "@/components/landing/TransferCarSvg";
 import { Button } from "@/components/ui/button";
 import { hotelInfo } from "@/lib/mock";
+import { StructuredData, breadcrumbSchema } from "@/components/seo/StructuredData";
 
 export const metadata = {
   title: { absolute: "Translado e Transfer | Hotel Brás — Guarulhos, Congonhas e Tietê" },
@@ -67,6 +68,12 @@ const steps = [
 export default function TransladoPage() {
   return (
     <main className="min-h-screen">
+      <StructuredData
+        data={breadcrumbSchema([
+          { name: "Início", path: "/" },
+          { name: "Translado", path: "/translado" },
+        ])}
+      />
       <Header />
 
       {/* Hero */}

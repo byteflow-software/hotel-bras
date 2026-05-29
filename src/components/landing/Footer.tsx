@@ -18,7 +18,7 @@ export function Footer() {
             <Link href="/" className="flex items-center gap-3 mb-6">
               <Image
                 src={logo}
-                alt="Hotel Brás"
+                alt="Logo do Hotel Brás"
                 width={60}
                 height={60}
                 className="rounded-lg"

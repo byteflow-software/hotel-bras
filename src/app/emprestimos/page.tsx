@@ -2,6 +2,7 @@ import { Header, Footer } from "@/components/landing";
 import { Clock, AlertCircle } from "lucide-react";
 import { getActiveLoanItems } from "@/app/gerenciar/itens-disponiveis/actions";
 import { DynamicIcon } from "@/components/ui/dynamic-icon";
+import { StructuredData, breadcrumbSchema } from "@/components/seo/StructuredData";
 
 export const metadata = {
   title: "Itens para Empréstimo | Hotel Brás",
@@ -17,6 +18,12 @@ export default async function EmprestimosPage() {
 
   return (
     <main className="min-h-screen">
+      <StructuredData
+        data={breadcrumbSchema([
+          { name: "Início", path: "/" },
+          { name: "Itens para Empréstimo", path: "/emprestimos" },
+        ])}
+      />
       <Header />
 
       {/* Hero */}

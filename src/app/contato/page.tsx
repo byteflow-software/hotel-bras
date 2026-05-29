@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { hotelInfo, unitAddresses } from "@/lib/mock";
 import { createContact } from "@/app/gerenciar/contatos/actions";
+import { StructuredData, breadcrumbSchema } from "@/components/seo/StructuredData";
 
 export default function ContatoPage() {
   const [formData, setFormData] = useState({
@@ -38,6 +39,12 @@ export default function ContatoPage() {
 
   return (
     <main className="min-h-screen">
+      <StructuredData
+        data={breadcrumbSchema([
+          { name: "Início", path: "/" },
+          { name: "Contato", path: "/contato" },
+        ])}
+      />
       <Header />
 
       {/* Hero */}

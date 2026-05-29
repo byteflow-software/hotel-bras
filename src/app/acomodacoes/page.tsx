@@ -5,6 +5,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ImageCarousel } from "@/components/ui/image-carousel";
 import { CommonAreasGallery } from "@/components/landing/CommonAreasGallery";
 import { getUnitsWithRoomTypes } from "@/lib/data/rooms";
+import { StructuredData, breadcrumbSchema } from "@/components/seo/StructuredData";
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://hotelbras.com";
 
 export const dynamic = "force-dynamic";
 
@@ -24,8 +27,42 @@ export const metadata = {
 export default async function AcomodacoesPage() {
   const units = await getUnitsWithRoomTypes();
 
+  const roomSchemas = units.flatMap((unit) =>
+    unit.roomTypes.map((room) => ({
+      "@context": "https://schema.org",
+      "@type": "HotelRoom",
+      name: room.name,
+      description: room.shortDescription || room.description,
+      bed: room.beds,
+      occupancy: {
+        "@type": "QuantitativeValue",
+        maxValue: room.maxOccupancy,
+        unitText: "person",
+      },
+      floorSize: {
+        "@type": "QuantitativeValue",
+        value: room.size,
+        unitCode: "MTK",
+      },
+      amenityFeature: (room.amenities || []).map((a: string) => ({
+        "@type": "LocationFeatureSpecification",
+        name: a,
+        value: true,
+      })),
+      image: (room.photos || []).slice(0, 4),
+      containedInPlace: { "@id": `${siteUrl}/#hotel` },
+    })),
+  );
+
   return (
     <main className="min-h-screen">
+      <StructuredData
+        data={breadcrumbSchema([
+          { name: "Início", path: "/" },
+          { name: "Acomodações", path: "/acomodacoes" },
+        ])}
+      />
+      {roomSchemas.length > 0 && <StructuredData data={roomSchemas} />}
       <Header />
 
       {/* Hero */}

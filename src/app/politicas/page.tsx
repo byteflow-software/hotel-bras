@@ -1,5 +1,6 @@
 import { Header, Footer } from "@/components/landing";
 import { policies, hotelInfo } from "@/lib/mock";
+import { StructuredData, breadcrumbSchema } from "@/components/seo/StructuredData";
 
 export const metadata = {
   title: "Políticas e Termos | Hotel Brás",
@@ -11,6 +12,12 @@ export const metadata = {
 export default function PoliticasPage() {
   return (
     <main className="min-h-screen">
+      <StructuredData
+        data={breadcrumbSchema([
+          { name: "Início", path: "/" },
+          { name: "Políticas e Termos", path: "/politicas" },
+        ])}
+      />
       <Header />
 
       {/* Hero */}

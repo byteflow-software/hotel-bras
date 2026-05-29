@@ -28,7 +28,7 @@ export function Header() {
           <Link href="/" className="flex items-center gap-2.5">
             <Image
               src={logo}
-              alt="Hotel Brás"
+              alt="Logo do Hotel Brás — hospedagem no bairro do Brás, São Paulo"
               width={44}
               height={44}
               className="rounded-lg"

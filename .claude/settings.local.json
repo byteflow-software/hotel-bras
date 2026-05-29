@@ -36,7 +36,18 @@
       "Bash(pnpm install)",
       "Bash(pnpm build:*)",
       "WebFetch(domain:omnibees.gitbook.io)",
-      "WebFetch(domain:www.hotelbras.com.br)"
+      "WebFetch(domain:www.hotelbras.com.br)",
+      "Bash(git -C C:/Users/ryanm/Documents/GitHub/hotel-bras remote -v)",
+      "Bash(git -C C:/Users/ryanm/Documents/GitHub/hotel-bras log --oneline --all -- scripts/migrate-to-blob.mjs)",
+      "Bash(git -C C:/Users/ryanm/Documents/GitHub/hotel-bras branch -a)",
+      "Bash(git filter-repo *)",
+      "Bash(FILTER_BRANCH_SQUELCH_WARNING=1 git filter-branch --force --index-filter \"git rm --cached --ignore-unmatch scripts/migrate-to-blob.mjs\" --prune-empty -- --all)",
+      "Bash(xargs -n1 git update-ref -d)",
+      "Bash(xargs -n1 git tag -d)",
+      "Bash(git reflog *)",
+      "Bash(git gc *)",
+      "Bash(git fsck *)",
+      "Bash(node_modules/.bin/tsc --noEmit)"
     ]
   }
 }

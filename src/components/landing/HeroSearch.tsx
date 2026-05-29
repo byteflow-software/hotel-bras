@@ -92,6 +92,9 @@ export function Hero() {
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12 text-center">
+        <h1 className="font-serif text-4xl md:text-6xl font-bold text-white mb-4 animate-fade-in">
+          Hotel Brás — Hospedagem no Brás, São Paulo
+        </h1>
         <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-10 animate-fade-in-delay">
           Duas unidades no bairro do Brás, em São Paulo. Conforto e
           praticidade para sua estadia perfeita.
